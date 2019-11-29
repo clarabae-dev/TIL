@@ -1,7 +1,7 @@
 #### Test Annotation
-1. @MockBean
+- @MockBean
 DI에 Bean으로 등록된 객체들을 mocking.  
-2. @Mock
+- @Mock
 일반 객체들을 mocking.  
 
 #### Spring MVC Test
@@ -17,3 +17,9 @@ dto <-> entity 매핑
 따라서 프레임워크 기능까지 통합한 Integration Test의 관점으로 보아야 한다.  
 그런데 Integration Test를 진행하려면 웹 어플리케이션을 배포해야 한다.  
 MockMvc는 웹 어플리케이션의 배포없이도 Spring MVC의 동작을 재현할 수 있다.
+
+#### Assert
+- assertSame()  
+== operator를 활용해 객체 참조를 비교한다.  
+- assertEquals()
+기본 데이터 타입일 경우, 단순 값을 비교하고, 객체일 경우, equals() 메소드로 객체간 비교를 수행한다.  

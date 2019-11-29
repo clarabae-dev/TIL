@@ -1,8 +1,8 @@
 #### 특정 클래스의 메소드, property에 관한 명세서
 protocol SomeProtocol {  
-  func someFunc() -> Int  
-  var someProperty: String { get set }  
-  optional func anotherFunc()  
+    func someFunc() -> Int  
+    var someProperty: String { get set }  
+    optional func anotherFunc()  
 }
 - someFunc() 메소드와 someProperty의 getter, setter을 모두 구현해야한다.
 - optional 키워드는 anotherFunc()은 꼭 구현할 필요가 없다는 의미.

@@ -34,28 +34,28 @@ class ViewModel: ViewModelProtocol {
 이런 문제를 해결하기 위하여 인터페이스에서 default 메소드를 구현해 놓을 수 있도록 하였다.  
 
 public interface Calculator {  
-      public int plus(int i, int j);  
-      public int multiple(int i, int j);  
-      default int exec(int i, int j){  
-          return i + j;  
-      }  
+    public int plus(int i, int j);  
+    public int multiple(int i, int j);  
+    default int exec(int i, int j){  
+        return i + j;  
+    }  
 }  
 
 public class MyCalculator implements Calculator {  
-      @Override  
-      public int plus(int i, int j) {  
-          return i + j;  
-      }  
-      @Override  
-      public int multiple(int i, int j) {  
-          return i * j;  
-      }  
+    @Override  
+    public int plus(int i, int j) {  
+        return i + j;  
+    }  
+    @Override  
+    public int multiple(int i, int j) {  
+        return i * j;  
+    }  
 }  
 
 public class MyCalculatorExam {  
-      public static void main(String[] args){  
-          Calculator cal = new MyCalculator();  
-          int value = cal.exec(5, 10);  
-          System.out.println(value);  
-      }  
+    public static void main(String[] args){  
+        Calculator cal = new MyCalculator();  
+        int value = cal.exec(5, 10);  
+        System.out.println(value);  
+    }  
 }  

@@ -76,7 +76,7 @@ fun hasPrefix(x: Any) = when(x) {
 - Since Kotlin 1.3, it is possible to capture when subject in a variable.  
 Scope of variable, introduced in when subject, is restricted to when body.  
 fun Request.getBody() =  
-        when (val response = executeRequest()) {  
-            is Success -> response.body  
-            is HttpError -> throw HttpException(response.status)  
-        }  
+    when (val response = executeRequest()) {  
+        is Success -> response.body  
+        is HttpError -> throw HttpException(response.status)  
+    }  
