@@ -1,7 +1,7 @@
 #### Install
 - brew install jenkins  
 > jenkins-lts : Long-Term Support release  
-> jenkins : Weekly releases deliver bug fixes and new features rapidly to users  
+  jenkins : Weekly releases deliver bug fixes and new features rapidly to users  
 
 #### Start Service
 - jenkins  
@@ -29,4 +29,27 @@ https://support.cloudbees.com/hc/en-us/articles/234710368-GitHub-Permissions-and
 - Generate Token -> 꼭 Token Copy할 것. 다시 확인할 수 없음.  
 
 2. Jenkins - Github 연결  
-- Jenkins 관리 -> 시스템 설정 -> GitHub -> Add GitHub Server
+- Jenkins 관리 -> 시스템 설정 -> GitHub -> Add GitHub Server  
+- Add Credentials  
+  Kind : Secret text  
+  Secret : Github에서 생성한 Access Token  
+  ID : credential 식별자  
+- Test Connection -> 'Credentials verified for user ~'  
+
+3. Jenkins Project 생성  
+- 새로운 Item -> Freestyle project  
+- General -> Github project -> Project url -> Github 프로젝트 Url 입력  
+- 소스코드 관리 -> Repositories -> Repository URL -> Github 프로젝트 Url 입력  
+- Add Credentials  
+  Kind : Username with password  
+  Username : Github 계정 ID  
+  Password : Github 계정 Password  
+- 빌드 유발 -> Github hook trigger for GITScm polling  
+- Build -> Invoke Gradle script -> Use Gradle Wrapper -> Make gradlew executable -> Tasks
+> Make gradlew executable : 체크하지 않으면 권한 에러 발생  
+> Tasks : Build시 사용될 gradle task를 입력  
+
+4. Jenkins Build Test
+- Build Now  
+> 연결된 Github project를 받아와 Tasks에 설정한 gradle task를 수행  
+  빌드 결과물 위치 : ~/.jenkins/workspace/"project"/build/libs  
