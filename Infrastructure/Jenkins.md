@@ -1,7 +1,20 @@
 #### Install
+1. Local  
 - brew install jenkins  
 > jenkins-lts : Long-Term Support release  
   jenkins : Weekly releases deliver bug fixes and new features rapidly to users  
+
+2. AWS  
+- sudo yum update -y  
+- sudo wget -O /etc/yum.repos.d/jenkins.repo https://pkg.jenkins.io/redhat-stable/jenkins.repo  
+> jenkins repo 추가  
+
+- sudo rpm --import https://pkg.jenkins.io/redhat-stable/jenkins.io.key  
+> jenkins 저장소 키 등록  
+
+- sudo yum install jenkins -y  
+- sudo service jenkins start  
+- ec2 보안그룹 8080 포트 추가  
 
 #### Start Service
 - jenkins  
@@ -29,12 +42,14 @@ https://support.cloudbees.com/hc/en-us/articles/234710368-GitHub-Permissions-and
 - Generate Token -> 꼭 Token Copy할 것. 다시 확인할 수 없음.  
 
 2. Jenkins - Github 연결  
-- Jenkins 관리 -> 시스템 설정 -> GitHub -> Add GitHub Server  
+- Jenkins 관리 -> 시스템 설정  
+- GitHub -> Add GitHub Server  
 - Add Credentials  
   Kind : Secret text  
   Secret : Github에서 생성한 Access Token  
   ID : credential 식별자  
 - Test Connection -> 'Credentials verified for user ~'  
+- Jenkins Location -> Jenkins URL -> 외부 접근(Github)을 위해 pulibc ip 변경  
 
 3. Jenkins Project 생성  
 - 새로운 Item -> Freestyle project  
