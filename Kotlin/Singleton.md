@@ -9,14 +9,14 @@ object로 선언한 클래스는 처음 호출하는 시점에 인스턴스화 �
 #### Singleton Pattern In Class  
 class ToDoApplication : Application() {  
     init {  
-        context = this  
+      context = this  
     }  
     companion object {  
-        lateinit var context: ToDoApplication  
-        private set  
+      lateinit var context: ToDoApplication  
+      private set  
     }  
     override fun onCreate() {  
-        super.onCreate()  
+      super.onCreate()  
     }  
 }  
 

@@ -16,13 +16,18 @@ Open Authorization, Open Authentication
 
 #### Various Authentication Methods
 1. Authorization Code Grant  
-- Client가 Redirect URL을 포함하여 Authorization server 인증 요청을 한다.  
-- Authorization Server는 유저에게 로그인창을 제공하여 유저 인증 절차를 거친다.  
-- Authorization Server는 Authorization code를 Client에게 제공한다.  
-- Client는 Authorization code를 포함하여 Authorization Server에 Access Token을 요청한다.  
-- Authorization Server는 Client에게 Access token을 발급한다.  
-- 발급받은 Access Token을 이용하여 Resource Server의 자원에 접근할 수 있게 된다.  
-- 토큰이 만료된다면 Refresh Token을 이용하여 토큰을 재발급 받을 수 있다.  
+- Resource Owner가 Client에 인증 요청을 한다.  
+- Client는 Redirect URL을 포함하여 Authorization server 인증 요청을 한다.  
+- Authorization Server는 Resource Owner에게 인증 수단(Login URL)을 제공하여 Resource Owner 인증 절차를 거친다.  
+- Authorization Server는 Authorization Code를 Client에게 제공한다.  
+- Client는 Authorization Code를 포함하여 Authorization Server에 Access Token을 요청한다.  
+- Authorization Server는 Authorization Code가 맞다면,  
+  Client에게 Access Token, Refresh Token, 사용자 정보를 발급한다.  
+- Resource Owner가 Resource Server의 자원을 요청하면,  
+  Client는 발급받은 Access Token을 이용하여 Resource Server의 자원에 접근할 수 있다.  
+- Access Token이 만료되거나 위조되었다면, Refresh Token을 보내 Access Token을 재발급 받을 수 있다.  
+- Refresh Token도 만료되었다면, Resource Owner는 다시 인증절차를 거쳐(재로그인)  
+  새로운 Authorization Code를 Client에게 넘겨야한다.
 
 2. Implicit Grant  
 - Client는 Authorization Server에 인증을 요청한다.  
@@ -32,7 +37,12 @@ Open Authorization, Open Authentication
 - Authorization Server는 그 토큰이 유효하다면 토큰의 만기시간을 함께 리턴한다.  
 - Client는 Resource Server에 접근할 수 있게 된다.  
 
-Resource Owner Password Credentials Grant
-Client Credentials Grant
-Device Code Grant
-Refresh Token Gran
+3. Resource Owner Password Credentials Grant  
+- Resource Owner(User)가 Id와 Password를 입력한다.  
+- Client는 Resource Owner의 id와 password와 Client 정보를 Authorization Server에 넘긴다.  
+- Authorization Sever는 Access Token을 넘긴다.  
+
+4. Client Credentials Grant  
+Resource Owner가 곧 Client일 때 사용하는 방식.  
+- Client 정보를 Authorization Server에 넘긴다.  
+- Access Token을 Client에 전달한다.  

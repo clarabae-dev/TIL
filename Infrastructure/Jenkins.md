@@ -33,7 +33,37 @@
 - brew remove jenkins  
 - rm -rfv $HOME/.jenkins  
 
-#### Github 연동하기
+#### Gitlab 연동
+1. Jenkins 환경설정  
+- Jenkins 관리 -> Global Tool Configuration -> jdk, git, gradle 경로 설정  
+> Gradle Wrapper를 사용한다면 경로를 명시할 필요없음  
+
+  Invoke Gradle: 설치된 gradle 버전으로 빌드 ex) gradle clean build  
+  Gradle Wrapper: jenkins workspace의 해당 아이템의 gradlew로 빌드 ex) ~/.jenkins/workspace/{new-item}/gradlew clean build  
+
+2. Jenkins Project 생성  
+- 새로운 Item -> Freestyle project  
+- 소스코드 관리 -> Git -> Repositories -> Repository URL -> Gitlab 프로젝트 Url 입력  
+- Add Credentials  
+  Kind: Username with password  
+  Username: Gitlab 계정 ID  
+  Password: Gitlab 계정 Password  
+  ID: Jenkins가 Credentials를 구별하기 위한 식별자  
+- 빌드 유발 -> Build when a change is pushed to GitLab. -> GitLab webhook URL(= Jenkins EndPoint) 복사  
+- 빌드 유발 -> 고급 -> Secret token -> Generate  
+> Jenkins에 build 요청을 위한 webhook을 보낼 수 있는 권한 생성  
+
+- Build -> Invoke Gradle script -> Use Gradle Wrapper -> Make gradlew executable -> Tasks  
+> Make gradlew executable : jenkins가 gradlew를 실행할 수 있도록 권한을 자동으로 변경해준다. 체크하지 않으면 권한 에러 발생.     
+> Tasks : Build시 사용될 gradle task를 입력  
+
+3. Gitlab Webhook 설정  
+- Settings -> Integrations  
+  URL: 빌드 유발에서 복사해두었던 GitLab webhook URL  
+  Secret Token: 빌드 유발에서 복사해두었던 Secret Token  
+- Add Webhook -> Test -> HTTP 200이 나타나면 정상 작동한 것.  
+
+#### Github 연동  
 1. Github Access Token 발급  
 - Profile -> Settings -> Developer Settings -> Personal access tokens -> Generate new token  
 - Note에 token의 용도 입력: jenkins  
@@ -60,9 +90,7 @@ https://support.cloudbees.com/hc/en-us/articles/234710368-GitHub-Permissions-and
   Username : Github 계정 ID  
   Password : Github 계정 Password  
 - 빌드 유발 -> Github hook trigger for GITScm polling  
-- Build -> Invoke Gradle script -> Use Gradle Wrapper -> Make gradlew executable -> Tasks
-> Make gradlew executable : 체크하지 않으면 권한 에러 발생  
-> Tasks : Build시 사용될 gradle task를 입력  
+- Build -> Invoke Gradle script -> Use Gradle Wrapper -> Make gradlew executable -> Tasks  
 
 4. Jenkins Build Test
 - Build Now  
