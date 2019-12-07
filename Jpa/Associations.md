@@ -41,3 +41,26 @@ true로 지정하면 부모 Entity가 삭제되었을 때, 자식 Entity들도 �
   - FetchType: LAZY, EAGER  
   EAGER: 관계를 맺은 Entity를 모두 가져온다.  
   LAZY: 관계를 맺은 Entity를 즉시 가져오지 않고, 실제 사용될 때(getter로 접근할 때) 가져온다.  
+
+#### N+1 문제  
+OneToMany 양방향 관계에서 부모 Entity를 조회할 때,  
+자식 Entity들을 함께 조회하는 것이 아니라, 자식 Entity의 수만큼 추가 조회하는 문제.  
+> SELECT * FROM MASTER  
+  SELECT * FROM STUDENT WHERE MASTER_ID = 0(MASTER_ID:FK)  
+  SELECT * FROM STUDENT WHERE MASTER_ID = 1  
+  SELECT * FROM STUDENT WHERE MASTER_ID = 2  
+  SELECT * FROM STUDENT WHERE MASTER_ID = 3 ...  
+
+- Join Fetch  
+조회할 때 바로 가져오고 싶은 Entity 필드를 지정하는 방법.  
+> @Query("select a from Academy a join fetch a.subjects")  
+  List<Academy> findAllJoinFetch();  
+> 자식 Entity의 자식 Entity까지 한번에 가져와야 할 때 join fetch 쿼리문.  
+  @Query("select a from Academy a join fetch a.subjects s join fetch s.teacher")  
+  List<Academy> findAllWithTeacher();  
+
+- Entity Graph  
+attributePaths에 쿼리 수행시 바로 가져올 필드명을 지정하면 Lazy가 아닌 Eager 방식으로 조회한다.  
+> @EntityGraph(attributePaths = "subjects")  
+  @Query("select a from Academy a")  
+  List<Academy> findAllEntityGraph();  
