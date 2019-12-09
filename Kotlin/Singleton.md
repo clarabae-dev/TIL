@@ -21,8 +21,11 @@ class ToDoApplication : Application() {
 }  
 
 - companion object  
-모든 클래스는 companion object를 구현할 수 있다.  
-Java의 static과 같다.  
+클래스에 argument가 필요한 경우, companion object를 활용해 싱글턴을 만들 수 있다.  
+모든 클래스는 companion object를 구현할 수 있다. Java의 static처럼 쓰인다.  
+그러나 inner로 선언된 companion object의 경우 static이라기 보다 outer class의 인스턴스를 싱글턴으로 쓸 수 있게 해준다.  
+그래서 일반적인 inner companion object로 데이터 바인딩 어댑터 함수를 작성하면 DataBinding code generator가 찾지 못한다.  
+inner companion object를 실제 static처럼 쓰기 위해서는 @JvmStatic annotation이 필요하다.  
 
 - lateinit  
 프로퍼티가 클래스 초기화 시점에는 값을 가지고 있지 않지만, 사용되기 전 값이 할당된다.  
