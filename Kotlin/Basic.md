@@ -80,3 +80,10 @@ fun Request.getBody() =
         is Success -> response.body  
         is HttpError -> throw HttpException(response.status)  
     }  
+
+#### Data Class
+data class  
+dto 또는 vo class를 선언하는 기본 방식이다.  
+생성자 파라미터로 프로퍼티들을 선언할 수 있다.  
+val: private, getter  
+var: private, getter, setter  
