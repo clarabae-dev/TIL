@@ -13,3 +13,17 @@ private StudentRepository studentRepository;
 String givenName = "pei";  
 int givenScore = 100;  
 given(studentRepository.getStudent(givenName)).willReturn(new Student(givenName, givenScore));  
+
+- should() / should(VerificationMode)  
+mock 객체의 활동을 검증하고자 할 때 사용한다.  
+then(mock).should().getData();  
+> getData()를 한번 호출했는지 검증.  
+
+then(mock).should(times(2)).processData();  
+> processData()를 두번 호출했는지 검증.  
+
+- InOrder  
+mock 객체의 메소드 호출 순서를 검증하고자 할 때 사용한다.  
+InOrder inOrder = inOrder(mock);  
+then(mock).should(inOrder, times(2)).processData();  
+> mock 객체가 processData를 첫번쨰, 두번째 순서로 호출했는지 검증.  
