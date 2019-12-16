@@ -87,3 +87,15 @@ dto 또는 vo class를 선언하는 기본 방식이다.
 생성자 파라미터로 프로퍼티들을 선언할 수 있다.  
 val: private, getter  
 var: private, getter, setter  
+
+#### Constants  
+const val은 런타임에 할당되는 val과 달리 컴파일 시간에 결정되는 상수.  
+문자열이나 기본 자료형만 할당이 가능하다.  
+val은 const 없이는 Java Class가 호출할 수 있는 public으로 노출하지 않는다.  
+val로 Java 스타일의 static final 변수를 선언하기 위해서는 @JvmField 키워드가 필요하다.  
+@JvmField val로 선언한 프로퍼티는 Java Class에서도 호출할 수 있다.  
+Kotlin Class에서 상수는 companion object 안에 const val로 선언한다.  
+
+#### Any  
+Java의 Object와 같은 최상위 객체(컴파일 시 Object로 변환)이지만,  
+Java와 달리 Int, Boolean 등 원시 타입의 상위 객체이기도 하다.  
