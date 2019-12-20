@@ -86,7 +86,8 @@ data class
 dto 또는 vo class를 선언하는 기본 방식이다.  
 생성자 파라미터로 프로퍼티들을 선언할 수 있다.  
 val: private, getter  
-var: private, getter, setter  
+var: private, getter, setter
+vararg: 가변인자(개수가 정해지지 않은 인자)
 
 #### Constants  
 const val은 런타임에 할당되는 val과 달리 컴파일 시간에 결정되는 상수.  
@@ -99,3 +100,12 @@ Kotlin Class에서 상수는 companion object 안에 const val로 선언한다.
 #### Any  
 Java의 Object와 같은 최상위 객체(컴파일 시 Object로 변환)이지만,  
 Java와 달리 Int, Boolean 등 원시 타입의 상위 객체이기도 하다.  
+
+#### Elvis Operator  
+?:
+좌항이 null이면 null을 반환한다.  
+우항에는 좌항이 null일 경우, 수행할 메소드나 값을 넣어준다.  
+
+#### invoke operator  
+operator fun invoke()  
+클래스 내에 위와 같이 invoke operator를 명시하면, 메소드명 없이 클래스의 어떤 인스턴스라도 호출할 수 있다.  
