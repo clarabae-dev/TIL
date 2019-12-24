@@ -8,3 +8,10 @@ git rebase -i -p b4cac44
 git commit --amend --author="clarabae-dev <clarabae.dev@gmail.com>"  
 - 나머지 커밋 내역도 연속해서 수정  
 git rebase --continue  
+
+#### git stash  
+git stash --all  
+(git stash list): stash 할 실제 소스가 몇번째인지 확인  
+git stash apply  
+git checkout branch명: branch 이동  
+git stash show -p | git apply --3: git stash apply로 복구 안될 때    
