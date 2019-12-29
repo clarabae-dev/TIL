@@ -11,15 +11,19 @@ add(item)은 오류가 발생하지만, add(null)은 오류가 발생하지 않�
 > subclass vs subtype: A?와 A는 동일한 클래스이다. A는 A?의 subtype이고, 그 역은 성립하지 않는다.  
 
 #### Invariance/Covariance  
-generic type을 각각 다른 type argument로 인스턴스화할 경우,  
-인스턴스 타입 간의 subtype 관계가 성립하지 않으면 그 generic type을 Invarinace(무공변, 불변성) 이라 한다.  
-> List<T>에서 type argument T가 서로 다르면 subtype 관계가 성립하지 않는다.  
-이 때, List는 T에 대해 무공변이다.  
+> class Double : Number  
 
-type argument 간의 subtype 관계가 성립하고,  
-이 subtype 관계가 인스턴스 타입 간의 관계로 이어지는 경우, Covariance(공변적) 이라 한다.  
-> B가 A의 subtype일 때, List<B>는 List<A>의 subtype이다.  
-이 때, List는 type argument T에 대해 공변적이다.  
+Double은 Number를 상속하고, Double의 super class는 Number이다.  
+그러나 Rectangle(Double)의 super class는 Rectangle<Number>가 아니다.  
+이처럼 type argument는 서로 상속 관계이지만 Generic class는 상속 관계가 아닐 때,  
+또는 type argument가 서로 전혀 다른 타입일 때,  
+해당 generic type을 *Invariance(불변성)* 이라 한다.  
+Kotlin에서 Generics의 모든 타입은 Invariance 이다.  
+
+Number가 Double의 super class이고, Rectangle<Number>가 Rectangle<Double>의  
+super class이면, Double을 *Covariance(공변성)* 이라 한다.  
+이처럼 type argument 간의 subtype 관계가 성립하고,  
+이 subtype 관계가 인스턴스 타입 간의 관계로 이어지는 경우, *Covariance(공변적)* 이라 한다.  
 
 #### In/Out  
 - T : 별도의 wildcard 정의 없이 read/write.  
