@@ -81,6 +81,16 @@ fun Request.getBody() =
         is HttpError -> throw HttpException(response.status)  
     }  
 
+3. For Expression  
+- basic iterator  
+for (i in intList) { print(i) }  
+
+- iterator based index  
+for (i in intList.indices) { println("index: $i, value: ${intList[i]}") }  
+
+- iterator withIndex  
+for ((index, value) in intList.withIndex()) { println("index: $index, value: $value") }
+
 #### Data Class
 data class  
 dto 또는 vo class를 선언하는 기본 방식이다.  
