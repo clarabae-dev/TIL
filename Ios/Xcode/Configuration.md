@@ -17,3 +17,20 @@ info.plist -> Bundle Identifier
 
 - Access the configuration in code  
 let flavorConfig = Bundle.main.object(forInfoDictionaryKey: "FlavorConfiguration")!
+
+#### HTTP  
+> App Transport Security has blocked a cleartext HTTP (http://) resource load  
+since it is insecure...  
+
+앱 자체의 보안을 위해 App Transport Security 정책을 통해 HTTPS 통신을 하도록 유도한다.  
+HTTP 통신을 하기 위해 info.plist에서 ATS 설정을 추가해야 한다.  
+<dict>  
+  <key>NSAppTransportSecurity</key>  
+  <dict>  
+    <key>NSAllowsArbitraryLoads</key>  
+    <true/>  
+  </dict>  
+</dict>  
+
+- App Transport Security, ATS  
+ios 9 이후부터 적용된 개인정보 보호 기능으로 XCode7 부터 앱 생성시 기본적으로 적용되는 보안 정책.  
