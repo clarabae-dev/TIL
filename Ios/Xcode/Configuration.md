@@ -1,4 +1,9 @@
 #### Build Configuration  
+- xcconfig files  
+A build configuration file is a plain text file that  
+defines and overrides the build settings for a particular build configuration  
+of a project or target.  
+
 - Default Settings  
 Product -> Scheme -> Edit Scheme...   
 Run(Debug), Archive(Release)  
