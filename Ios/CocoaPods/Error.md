@@ -8,3 +8,8 @@ brew upgrade cocoapods
 또는 소스 컴파일 후 링크 걸어주기  
 brew install cocoapods --build-from-source  
 brew link --overwrite cocoapods  
+
+#### Firebase Integration Error  
+Linker 관련 오류들  
+- 해결 방법  
+Target -> Build Settings -> Other Linker Flags -> ${inherited} 추가  
