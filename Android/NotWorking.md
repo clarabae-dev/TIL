@@ -27,3 +27,16 @@ lateinit property subject has not been initialized 오류 발생
 * 초기화 확인 방법  
 .isInitialized (::을 통해서만 접근이 가능)  
 예시: if (::sampleAdapter.isInitialized)  
+
+5. NoSuchMethodException in Activity OnCreate  
+activity는 savedInstanceState bundle에서 복구되는데, 복구 작업 중 fragment도 재생성한다.  
+activity의 fragment가 파라미터가 있는 생성자를 갖고 있는 경우, 발생할 수 있는 오류.  
+> stackoverflow  
+
+* 적용한 방법  
+Fragment.newInstance()  
+
+6. KotlinNullPointerException  
+!! 사용할 경우 발생  
+* 적용한 방법  
+!!의 사용을 지양하며, ?로 항상 체크해준다.  
