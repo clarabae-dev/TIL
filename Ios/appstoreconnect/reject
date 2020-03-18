@@ -1,2 +1,10 @@
-1. MetaData
-- HealthKit과 같은 사용자 리소스를 사용하는 경우, 메타데이터에 반드시 사용 목적에 대해 기록해야 함.  
+1.  
+Guideline 2.5.1 - Performance - Software Requirements
+Your app uses the HealthKit or CareKit APIs but does not indicate integration
+with the Health app in your app description and clearly identify the HealthKit
+and CareKit functionality in your app's user interface.
+
+- HealthKit과 같은 사용자 리소스를 사용하는 api를 사용하는 경우, 메타 데이터(앱 설명)에 반드시
+사용 목적에 대해 기록해야 한다.
+- HealthKit을 걷어낼 경우, Capability와 Build Phases -> Link Binary with Libraries
+모두에서 HealthKit을 제거해야 한다.
