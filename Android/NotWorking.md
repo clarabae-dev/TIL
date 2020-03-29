@@ -40,3 +40,12 @@ Fragment.newInstance()
 !! 사용할 경우 발생  
 * 적용한 방법  
 !!의 사용을 지양하며, ?로 항상 체크해준다.  
+
+7. 에뮬레이터, INSTALL_FAILED_INSUFFICIENT_STORAGE or INSTALL_FAILED_DEXOPT  
+해결1. Tools -> AVD Manager -> 에뮬레이터 메뉴 -> Wipe Data  
+해결2.  
+- stop emulator  
+- cd ~/.android/avd/[emulator name].avd  
+- rm .lock  
+- Wipe Data  
+해결3. Tools -> AVD Manager -> Internal Storage size 늘리기  
