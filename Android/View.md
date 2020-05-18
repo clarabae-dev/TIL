@@ -28,3 +28,7 @@ layout_constraintHorizontal_bias="0"
 layout_width = "0dp"  
 layout_constraintStart_toStartOf = "@+id/A"  
 layout_constraintEnd_toEndOf = "@+id/A"  
+
+#### Add View to bottom of parent in NestedScrollView  
+<NestedScrollView>에 android:fillViewPort="true" 추가  
+bottom에 배치할 뷰에 app:layout_constraintBottom_toBottomOf="parent" 추가  
