@@ -33,19 +33,7 @@ info.plist -> Bundle Identifier
 -> Change $(PRODUCT_BUNDLE_IDENTIFIER) to $(Your Identifier Title Name)  
 
 - Access the configuration in code  
-let flavorConfig = Bundle.main.object(forInfoDictionaryKey: "FlavorConfiguration")!
-
-#### Environment  
-- Development  
-개발 전용 로컬 환경으로, 실제 유저의 사용에 전혀 영향을 미치지 않는다.  
-- Staging  
-최대한 실제 서비스 환경과 유사하게 만든 환경이다.  
-실서비스(Production) 환경에 영향을 주지 않으면서 많은 서비스(Service) 영역과 통신할 수 있다.  
-DB migration, major update 등을 테스트할 때 활용한다.  
-클라이언트에 데모 서비스를 제공할 때, Staging 환경을 기반으로 제공할 수 있다.  
-실서비스에 배포하기 이전에 최종 확인을 할 수 있는 환경이다.  
-- Production  
-실제 유저에게 제공되는 서비스 환경이다.  
+let flavorConfig = Bundle.main.object(forInfoDictionaryKey: "FlavorConfiguration")!  
 
 #### HTTP  
 > App Transport Security has blocked a cleartext HTTP (http://) resource load  

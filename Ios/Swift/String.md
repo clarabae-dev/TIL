@@ -8,3 +8,13 @@ let results = regex?.matches(in: str, options: [], range: NSRange(location: 0, l
 * 정규표현식  
 []: 패턴이 어떤 종류의 값을 갖는지, 값의 범위를 표현  
 +: [] 범위에 포함되는 문자들이 하나 이상 존재  
+
+#### 문자열에서 개별 문자 접근하기  
+String 문자에 접근하기 위해서는 index를 활용할 수 있다. 이 경우, index는 String.Index 타입이다.  
+빈 문자열은 startIndex와 endIndex가 동일하다.  
+ex. str.index(str.startIndex, offsetBy: 3)  
+또는 String 자체가 배열과 같으므로 Array(str)로 감싸 접근도 가능하다.  
+위와 같은 과정으로 추출한 개별 문자의 경우 String 타입이 아닌 char 타입이므로 String으로 반환해야할 경우 String(char)으로 감싸준다.  
+
+#### Value Type  
+Swift에서 String type은 참조형태가 아닌 값 형태이다.  
