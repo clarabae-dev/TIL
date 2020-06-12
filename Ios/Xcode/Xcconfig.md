@@ -38,3 +38,20 @@ but the tests will work with development server.
 	Project -> Info -> Configurations  
 	Now you can attach a configuration file for each configuration you defined, and even for each target.  
 *Note: If you’re using Cocoapods, you’ll have to delete your workspace and your Podfile.lock files, and run Poddfile install again.*  
+  
+6. Edit XCConfig  
+Xcode treats “//“ as a comment, even if it’s part of a URL, so take this into account.  
+You can work around this by putting another symbol in place of “//“ and replace it in your code afterward.  
+Each value in the config file is translated to a string afterward, so no need to wrap it with quotation marks.  
+*configuration settings file format documentation: https://help.apple.com/xcode/#/dev745c5c974*  
+  
+7. Inheritance  
+Use #include to other XCConfig files and add $(inherited) keyword.  
+  
+8. Accessing Value From Code  
+In info.plist: $(variable name)  
+ex. $(APP_NAME)  
+In code:  
+func getValue(forKey key : String) -> String? {  
+	Bundle.main.infoDictionary?[key] as? String  
+}  
