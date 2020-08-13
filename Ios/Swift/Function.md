@@ -11,3 +11,7 @@ UInt32 타입의 파라미터를 받을 수 있다.
 Swift는 함수 argument마다 name을 붙일 것을 요구한다. 함수를 호출할 때도 argument name을 꼭 명시한다.  
 name없이 underscore를 argument 앞에 붙일 경우, 함수 호출에서 argument name을 명시하지 않아도 된다.  
 단일 argument나 name을 명시할 필요가 없는 경우 활용하면 좋다.  
+  
+#### @discardableResult  
+결과를 사용하지 않고, 값을 리턴하는 함수 또는 메소드가 호출될때 컴파일러 경고를 표시 하지않을 때 사용한다.  
+Result of call to '~~' is unused -> 경고 제거.  
