@@ -9,7 +9,8 @@
 delegate pattern은 protocol로 구현되어 있다. protocol은 서로간에 '~ 경우에는 이러이러하게 행동하자' 라는 약속과 같다.  
 protocol은 상호간 약속을 정의만 해준다. 직접 구현은 해당 protocol을 준수하겠노라고 채택한 곳에서 한다.  
 delegate의 활용 과정은 다음과 같다. protocol 채택 -> 위임자 지정 -> protocol 구현
-
+  
+```swift
 class ViewController: UIViewController, UITextFieldDelegate { // 1. ViewController는 UITextFieldDelegate를 준수하겠노라고 채택한다.  
         
     @IBOutlet weak var textField: UITextField!  
@@ -27,13 +28,15 @@ class ViewController: UIViewController, UITextFieldDelegate { // 1. ViewControll
         return true  
     }  
 }  
+```
 
 #### 유사 패턴
 - 유사패턴: Java8 인터페이스 default 메서드
 인터페이스가 default 키워드로 선언되면 메소드를 구현할 수 있다. 또한 이를 구현하는 클래스는 default 메소드를 오버라이딩 할 수 있다.  
 인터페이스가 변경되면, 인터페이스를 구현하는 모든 클래스들이 해당 메소드를 구현해야 하는 문제가 있다.  
 이런 문제를 해결하기 위하여 인터페이스에서 default 메소드를 구현해 놓을 수 있도록 하였다.  
-
+  
+```swift
 public interface Calculator {  
     public int plus(int i, int j);  
     public int multiple(int i, int j);  
@@ -60,3 +63,4 @@ public class MyCalculatorExam {
         System.out.println(value);  
     }  
 }  
+```

@@ -11,6 +11,7 @@ DP는 계산횟수를 줄일 수 있기 때문에 하위 문제 수가 기하급
 
 일례로 피보나치를 구현할 때, 재귀함수를 사용하면 시간복잡도는 O(2^n)이지만, DP를 사용하면 O(N)이다.  
   
+``` swift
 func fib(_ n: Int) -> Int {// 일반 재귀 피보나치 함수  
 &nbsp;&nbsp;guard n > 1 else { return n }  
 &nbsp;&nbsp;if n == 2 { return 1 }  
@@ -25,7 +26,8 @@ func dpfib(_ n: Int) -> Int {// Memoization 피보나치 함수
 &nbsp;&nbsp;}  
 &nbsp;&nbsp;return fibs.last!  
 }   
-
+```
+  
 #### 목적  
 DP는 optimal value와 optimal solution을 찾는 것이 목적이다.  
 그래서 DP 알고리즘은 최단 경로 문제 등 문제의 '최적화'에 사용된다.  

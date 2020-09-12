@@ -6,6 +6,7 @@ closure는 함수형 프로그래밍의 특징을 오롯이 지니고 있다.
 > 어떤 값을 할당받고 반환하고 할 필요가 없다.  
 
 - 일반적인 함수  
+```swift
 func hello() { print("안녕하세요") }  
 hello()//안녕하세요  
 - closure expression  
@@ -15,6 +16,7 @@ hello()//안녕하세요
 ({ ( ) -> Void in  
     print("안녕하세요")  
 })()//안녕하세요  
+```
 > 함수 이름이 없기 때문에 Anonymous Function, 익명함수라고도 불린다.  
 
 2. 참조투명성을 지킨다.  

@@ -8,6 +8,7 @@ collection의 크기와 상관없이 요소를 조회하는데 동일한 시간�
   public func hash(into hasher: inout Hasher) 내부 구현에 따라 동일 객체 판단을 결정할 수 있다.  
   객체의 일부 값만 hashValue 생성에 활용하는 방식도 가능하다.  
   Ex. Set의 KeyType으로 Model을 할당하기 위해 Hashable 구현.  
+  ```swift
   extension Model: Hashable {  
   	static func == (lhs: Model, rhs: Model) -> Bool {  
   		return lhs.hashValue == rhs.hashValue  
@@ -16,6 +17,7 @@ collection의 크기와 상관없이 요소를 조회하는데 동일한 시간�
   		hasher.combine(self.id)  
   	}  
   }  
+  ```
 - Set.insert: 동일한 값이 있으면, 값이 set에 들어가지 않는다. Set에 추가를 시도한 값이 반환되며, 만약 값이 들어가면 nil이 반환된다.  
 - Set.update: 동일한 값이 있어도 값이 Set에 들어간다. 대신 기존에 있던 값이 반환되며, 동일한 값이 없었다면, nil을 반환한다.  
 - Set.remove: 값을 삭제한다. 값이 삭제된다면 삭제된 값을 반환하며, 값이 없으면 nil을 반환한다.  
