@@ -1,9 +1,89 @@
-출처: https://docs.swift.org/swift-book/LanguageGuide/AutomaticReferenceCounting.html  
+출처:  
+https://docs.swift.org/swift-book/LanguageGuide/AutomaticReferenceCounting.html  
+https://velog.io/@cskim/ARCAutomatic-Reference-Counting  
+    
+## 발생할 수 있는 메모리 관련 문제들  
+1. Memory Leak  
+사용하지 않는 데이터가 메모리 공간을 계속 차지하게 되는 메모리 누수 문제  
+2. Dangling Pointer  
+이미 해제된 메모리 주소로 접근하여 발생하는 고아 포인터 문제  
   
-## ARC  
+  
+## Automatic Reference Counting  
+  
+### RC  
+- Reference Counting, 애플에서 메모리를 관리하는 방법  
+- 이전 Objective-C에서는 RC 방법으로 런타임 중 메모리를 관리  
+- MRC 또는 MRR이라 부름.  
+MRC(Manual Reference Counting): 개발자가 메모리 할당 및 해제를 직접 관리  
+MRR(Manual Retail-Release): 할당(retain)과 해제(release)를 명시적으로 호출  
+- 2011년부터 Objective-C의 메모리 관리 방식이 MRC -> ARC 로 변경  
+
+### ARC  
 - Swift에서 앱의 메모리 사용을 추적하고 관리할 때 사용하는 기능  
-- 대부분의 경우, 메모리 관리는 ARC가 처리. 개발자는 메모리 관리를 신경쓸 필요가 없다.  
-- 참조 카운팅은 Class 인스턴스에만 해당. Structure와 Enum은 value type으로 참조로 저장되거나 전달되지 않는다.  
+- 컴파일 때 ARC가 자동으로 구문을 분석하여 적절하게 retain, release 등의 코드를 삽입  
+런타임 중에는 별도의 메모리 관리가 이루어지지 않는다.  
+retain, release로 RC(reference count)를 증감시키다가 RC = 0 이 되면 deinit으로 해제시킨다.  
+RC는 HeapObject 구조체를 통해 접근할 수 있다.
+- 클래스 인스턴스 및 함수, 클로저 같은 참조타입에만 적용  
+기본적으로 retain, release는 메모리 힙영역에 할당 및 해제하는 작업  
+Structure와 Enum은 value type으로 참조로 저장되거나 전달되지 않는다.  
+- ARC 동작과정은 Swift Runtime 라이브러리에 구현  
+동적으로 할당되는 모든 객체를 HeapObject 라는 구조체로 표현  
+HeapObject에는 RC가 포함되고, ARC는 클래스에 대한 HeapObject를 통해 RC를 관리  
+  
+### ARC Count Up  
+![Alt text](https://images.velog.io/images/cskim/post/8572c476-6691-4f93-b72e-4f43cce35dac/image.png)  
+  
+- 참조 카운트는 클래스 인스턴스 등의 참조 타입 값을 변수에 할당할 때 증가  
+이 때 메모리에서는 힙영역에 저장된 인스턴스 메타 데이터의 주소값을 변수에 할당하는 작업을 수행  
+즉, 메모리 힙영역에 저장되어 있는 인스턴스 메타 데이터의 주소값이 변수에 할당되는 시점 == 참조 카운트 증가 시점  
+  
+### ARC Count Down  
+![Alt text](https://images.velog.io/images/cskim/post/cf077539-43c2-4c24-b22f-5c03ada0874c/image.png)  
+  
+- 인스턴스를 참조하던 스택 영역의 변수들이 메모리에서 해제되는 시점 == 참조 카운트가 감소하는 시점  
+  
+### Stack 영역에 할당된 변수가 메모리에서 해제되는 경우  
+1. 변수의 생명주기가 끝날 때  
+- 변수 생명주기는 해당 변수의 scope에 따라 다름.  
+- 실행 흐름이 변수가 선언된 블록을 벗어나면 해당 변수는 메모리에서 해제됨.  
+
+```swift
+var reference1 = Person1()    // Person1 RC 1
+func execute() {
+  let reference2 = reference1    // Person1 RC 2
+  let reference3 = Person3()  // Person3 RC 1
+}
+execute()		// Person1 RC 1, Person3 RC 0(release)
+```
+  
+2. nil이 할당 될 때  
+- optional 타입 변수에 nil을 할당하면 변수는 값을 갖지 않는 상태가 되어 메모리에서 해제됨.  
+  
+```swift
+var reference1: Person? = Person1()  // Person1 RC 1
+func execute() {
+  let reference2 = reference1           // Person1 RC 2
+  let reference3 = Person3()         // Person3 RC 1
+}
+execute()      // Person1 RC 1, Person3 RC 0(release)
+reference1 = nil  // Person1 RC 0(release)
+```
+  
+3. 속성은 자신이 속해있는 클래스 인스턴스가 메모리에서 해제될 때  
+- 클래스 인스턴스의 참조횟수가 0이 되어 메모리에서 해제되면 내부 메타 데이터들도 모두 해제된다.  
+따라서 속성들(property)도 해제된다.  
+  
+```swift
+class Person1 {
+  var reference2: Person2?
+}
+var reference1: Person1? = Person1()  // Person1 RC 1
+reference1?.reference2 = Person2()    // Person2 RC 1
+reference1 = nil    // Person1 RC 0(release) -> Person2 RC 0(release)
+```
+  
   
   
 ## 작동 방식  
@@ -36,12 +116,13 @@ var reference2: Person?
 var reference3: Person?
 
 reference1 = Person(name: "John Appleseed")
+// RC 1
 // Person 클래스의 Initializer를 호출했으므로 메모리가 할당된다.
 // 변수 reference1은 Person 인스턴스에 대해 강한 참조를 한다.
 // 최소 하나의 강한 참조가 있으므로 ARC는 Person 인스턴스를 메모리에 유지한다.
 
-reference2 = reference1
-reference3 = reference1 // 이제 3개의 강한 참조가 생겼다.
+reference2 = reference1 // RC 2
+reference3 = reference1 // RC 3
 
 reference1 = nil
 reference2 = nil // 강한 참조를 중단하려면 nil을 변수에 할당하면 된다.
@@ -118,7 +199,7 @@ Person 인스턴스와 Apartment 인스턴스 간의 강한 참조는 여전히 
   
   
 ### Weak References  
-- weak 참조는 인스턴스 참조를 강하게 유지하지 않아서 ARC가 참조 인스턴스를 메모리에서 해제하는 것을 막지 않는다.  
+- weak 참조는 참조 관계를 유지하지만 참조 카운트는 증가시키지 않는 참조(변화시키지 않음)  
 - 다른 인스턴스를 참조하는 속성이나 변수 선언 전에 weak 키워드를 사용.  
 - 참조하는 인스턴스를 강하게 유지하지 않기 때문에 weak 참조가 아직 참조 중임에도 해당 인스턴스가 메모리에서 해제될 수 있다.  
 - ARC는 참조하는 인스턴스가 해제될 때 자동으로 weak 참조를 nil로 지정.  
@@ -175,7 +256,7 @@ Apartment 인스턴스에 대한 강한 참조도 더이상 없기 때문에 Apa
   
   
 ### Unowned References  
-- weak 참조와 마찬가지로 참조하는 인스턴스를 강하게 유지하지 않아서 ARC가 참조 인스턴스를 메모리에서 해제하는 것을 막지 않는다.  
+- weak 참조와 마찬가지로 참조 관계를 유지하지만 참조 카운트는 증가시키지 않는 참조(변화시키지 않음)  
 - weak 참조와 달리 기준 인스턴스에 비해 다른 인스턴스가 동일하거나 더 긴 생명주기를 갖고 있을 때 사용.  
 - 다른 인스턴스를 참조하는 한 속성이나 변수 선언 전에 unowned 키워드를 사용해 unowned 참조를 할 수 있다.  
 - weak 참조와 달리 항상 값을 가질 것으로 예상된다.  
