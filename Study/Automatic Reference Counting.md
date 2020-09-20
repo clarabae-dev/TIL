@@ -16,7 +16,7 @@ https://velog.io/@cskim/ARCAutomatic-Reference-Counting
 - 이전 Objective-C에서는 RC 방법으로 런타임 중 메모리를 관리  
 - MRC 또는 MRR이라 부름.  
 MRC(Manual Reference Counting): 개발자가 메모리 할당 및 해제를 직접 관리  
-MRR(Manual Retail-Release): 할당(retain)과 해제(release)를 명시적으로 호출  
+MRR(Manual Retain-Release): 할당(retain)과 해제(release)를 명시적으로 호출  
 - 2011년부터 Objective-C의 메모리 관리 방식이 MRC -> ARC 로 변경  
 
 ### ARC  
