@@ -86,17 +86,17 @@ hit ratio는 캐사에서 특정 데이터를 얼마나 자주 찾는가를 나�
 이 알고리즘은 데이터 사용 내역을 추적해야 하고, 항상 가장 오랫동안 사용되지 않은 데이터를 삭제하도록 하기 위해 비용이 많이 든다.  
 프로세스가 주기억장치에 접근할 때마다 페이지 참조 시간을 기록해야 해서 큰 오버헤드가 발생한다.  
   
-![Alt text](https://en.m.wikipedia.org/wiki/File:Lruexample.png)  
+![Alt text](https://upload.wikimedia.org/wikipedia/commons/8/88/Lruexample.png)  
   
 4. Most recently used, MRU  
 LRU와 반대로, 가장 최근에 사용된 데이터를 가장 먼저 제거한다.  
 MRU는 더 오래된 데이터에 접근할 확률이 높을수록 효과적이다.  
   
-![Alt text](https://en.m.wikipedia.org/wiki/File:Mruexample.png)  
+![Alt text](https://upload.wikimedia.org/wikipedia/en/4/43/Mruexample.png)  
   
 5. Pseudo-LRU, PLRU
   
-![Alt text](https://en.m.wikipedia.org/wiki/File:Plruexample.png)    
+![Alt text](https://upload.wikimedia.org/wikipedia/en/thumb/5/56/Plruexample.png/800px-Plruexample.png)    
   
 LRU의 성능 향상 버전. 교체할 때 모든 데이터의 정확한 age를 사용하기 보다 대략적인 age 측정값을 활용하는 것이다.  
 위는 트리방식의 PLRU이다. miss가 발생하면 메모리에 필요한 데이터를 적재한다.  
