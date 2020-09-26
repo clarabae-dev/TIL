@@ -5,6 +5,7 @@ Full Table Scan은 테이블의 각 행을 순차적으로 읽고, 행을 읽으
 튜플의 수가 많아지면 검색 시간이 매우 오래 걸리는 방법이다. 이를 보완하기 위해 DB는 Index를 제공한다.  
   
   
+  
 ## Database Index  
 Indexing은 쿼리 수행 때마다 디스크 I/O 횟수를 최소화 시켜 DB 성능을 최적화하는 방법이다.  
   
@@ -28,6 +29,7 @@ Index는 기본적으로 Key-Value 구조로 구성하며, 테이블에 대한 �
 별도의 정보없이 오로지 Key 값을 기초로 하기 때문에 검색과 정렬 속도를 향상시킬 수 있다.  
 검색과 정렬 속도를 높이기 위해 DB는 기본적으로 PK를 자동으로 Indexing 한다.  
 Index를 많이 사용하면 Index 재정렬에 많은 시간이 소요되어 DB의 성능 저하를 유발할 수 있기 때문에 다양한 알고리즘으로 Index를 관리한다.  
+  
   
   
 ## Indexing Method  
@@ -80,6 +82,7 @@ Outer 블록은 Inner 블록으로 나뉘며, 차례로 Data 블록을 가리킨
   
   
   
+  
 ## Index Type  
   
   
@@ -103,6 +106,7 @@ Index 레코드에는 탐색키와 해당 탐색키 값인 데이터 레코드�
 ### Secondary Index  
 PK가 아닌 필드를 기준으로 인덱싱할 때 사용하는 인덱스로 반드시 정렬되어 있다는 보장이 없다.  
 인덱스는 인덱싱 기준 필드와 레코드/블록에 대한 포인터로 구성한다.  
+  
   
   
 ## Index Algorithm  
@@ -142,7 +146,7 @@ B-Tree는 모든 노드에서 선형 탐색을 수행해야 한다.
   
   
   
-출처:  
+## 출처  
 https://www.geeksforgeeks.org/indexing-in-databases-set-1/  
 https://www.geeksforgeeks.org/difference-between-clustered-and-non-clustered-index/  
 https://dodo000.tistory.com/22  
