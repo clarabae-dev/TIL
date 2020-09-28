@@ -64,7 +64,7 @@ Clustered Index는 인덱스와 데이터가 동일한 공간에 저장되기 �
 때문에 추가적인 저장 공간이 필요하며, 테이블 하나당 여러 개의 Non-Clustered Index를 가질 수 있다.(1:N)  
 예를 들어, 책은 목차와 알파벳 순의 용어 설명 두가지 색인을 가질 수 있다.  
   
-Non-Clustered Index는 *비정렬* 방식으로, PK가 아닌 유니크 키를 활용하여 쿼리 성능을 향상시킨다.  
+Non-Clustered Index는 **비정렬** 방식으로, PK가 아닌 유니크 키를 활용하여 쿼리 성능을 향상시킨다.  
 유니크한 후보키를 활용하기 때문에 Secondary Indexing이라고도 부른다.  
   
 Non-Clustered Index는 논리 정렬 인덱스로 인덱스 순서가 실제 물리적인 테이블 데이터 순서와는 다르다.  
