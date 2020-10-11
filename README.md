@@ -1,1 +1,1 @@
-# Today I Learned
+알게 된 내용, 배운 내용 기록하기
