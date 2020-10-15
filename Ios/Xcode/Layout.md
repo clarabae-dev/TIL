@@ -1,5 +1,5 @@
 ### AutoLayout  
-다양한 사이즈와 화면 비율에 구애받지 않고 시작적으로 동일한 화면을 구현하기 위한 방법이다.  
+다양한 사이즈와 화면 비율에 구애받지 않고 시각적으로 동일한 화면을 구현하기 위한 방법이다.  
 뷰의 constraint를 기반으로 모든 뷰의 크기와 위치를 동적으로 계산한다.  
 
 ### Frame and Bounds  
@@ -30,7 +30,7 @@ UI Framework의 일부 뷰에는 Contrisic content size, 컨텐츠 고유 사이
 ### UITableView  
 1. Dynamic Height  
 - TableViewDelegate를 직접 extension하여 활용할 경우  
-  
+
 ```swift
 func tableView(_ tableView: UITableView, heightForRowAt indexPath: IndexPath) {
 	return UITableView.automaticDimension
