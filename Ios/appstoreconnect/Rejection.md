@@ -12,3 +12,16 @@ Aside from simple bug fixes, security updates, and performance improvements,
 apps must clearly describe new features and product changes in their "What’s New" text.  
   
 - 새로 출시할 버전에서 업그레이드한 사항에 대해 자세히 적어야 한다.  
+
+3. Your app uses the "prefs:root=" non-public URL scheme, which is a private entity.  
+
+- 앱 내에서 위치 권한 등을 이유로 설정창 등 외부로 이동할 때, 그 경로를 직접 지정해주면 안된다.  
+- UIApplicationOpenSettingsURLString을 사용한다.  
+
+```Objective-C
+NSURL *url = [NSURL URLWithString:UIApplicationOpenSettingsURLString];
+if (url != nil) {
+  [[UIApplication sharedApplication] openURL:url options:[NSDictionary new] completionHandler:nil];
+}
+```  
+  
