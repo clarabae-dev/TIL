@@ -16,6 +16,7 @@ let intersection: Set<Int> = setA.intersection(setB) // 교집합
 let subtracting: Set<Int> = setA.subtracting(setB) // 차집합
 ```  
   
+- Hashable한 값만 들어갈 수 있기 때문에 중복을 허용하지 않는다. 유니크한 값인지 따질 수 있는 타입이어야 한다.  
   
 ### Array  
 - 순서가 있는 List 형태의 collection type.  
@@ -52,6 +53,7 @@ var anyDictionary = [String: Any]()
 - 키에 값을 할당하여 아이템을 추가 또는 변경할 수 있다.  
 - 키 값 제거: removeValue(forKey: "someKey"), anyDictionary["someKey"] = nil  
 - let으로 Dictionary를 선언하면 immutable dictionary가 된다. 값을 변경할 수 없다.  
+- key가 Hashable 해야한다. 유니크한 값인지 따질 수 있는 타입이어야 한다.  
   
 ### Sort  
 1. sort(): collection을 오름 및 내림차순으로 정렬한다.  
@@ -90,6 +92,17 @@ let sortedOne = dictionary.sorted {
 // dictionary 아이템 element 명을 사용하는 대신 position 값으로 대체할 수 있다.
 ```  
   
+  
+### Hashable  
+정수 Hash 값을 제공하는 프로토콜로, Set 또는 Dictionary의 Key로 Hashable을 준수하는 모든 타입을 사용할 수 있다.  
+Swift의 기본 타입들과 Enum은 기본적으로 hashable한 타입들로 Dictionary Key로 사용할 수 있다.  
+
+타입의 hashValue 프로퍼티가 제공하는 hash 값은 해당 타입의 임의의 두 인스턴스에 대해 동일한 정수값이다.  
+즉, 동일한 타입의 인스턴스 A, B가 있을 때, A == B 이면 A.hashVluae == B.hashValue 이다.  
+그러나 반대로 hash 값이 같다하여 두 인스턴스가 동일할 필요는 없다.  
+  
+**Hash 값은 프로그램 실행에 따라 동일하지 않을 수 있으므로, 다음 실행에서 이전 실행의 Hash 값을 사용해서는 안된다.**  
+
   
   
 출처:  

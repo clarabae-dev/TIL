@@ -27,6 +27,22 @@ extension Talkable {
 2. 기능의 모듈화  
 프로토콜 단위로 기능을 묶어 표현하고 초기 구현을 해둘 수 있고, 다중 상속이 가능하다.  
   
+### Extension  
+struct, enum, protocol, class, generic 등 모든 타입에 새로운 기능을 추가할 수 있는 기능으로 기존의 기능을 재정의할 수는 없다.  
+외부에서 가져온 타입에 원하는 기능을 추가하고자 할 때 유용하다.  
+  
+#### Extension vs Inheritence  
+1. Inheritence  
+- class type에서만 사용할 수 있다.  
+- 특정 타입을 상속받아 하나의 새로운 타입을 정의하고 추가 기능을 구현할 수 있는 수직 확장 구조이다.  
+- 기존 기능을 재정의할 수 있다.  
+2. Extension  
+- class, struct, protocol, enum 등 모든 타입에 사용할 수 있다.  
+- 새 타입을 정의할 필요없이 기존 타입에 새로운 기능을 추가하는 수평 확장 구조이다.  
+- 기존 기능을 재정의할 수 없다.  
   
   
-출처: https://blog.yagom.net/531/  
+  
+출처:  
+https://blog.yagom.net/531/  
+https://github.com/yagom/swift_basic/tree/master/contents/20_extension  
