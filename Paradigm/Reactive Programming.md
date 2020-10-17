@@ -18,8 +18,7 @@ ex. DataBinding
 스트림을 listening함으로써 데이터의 결과값을 얻는다. 이를 subscribe라고 표현한다.  
   
 ### ReactiveX  
-ReactiveX란, observable stream을 활용해 비동기 프로그래밍을 하기 위한 API다.  
-*stream: 연속되는 요소*  
+ReactiveX란, observable stream을 활용해 비동기 프로그래밍을 하기 위한 API다.(*stream: 연속되는 요소*)  
   
   
   
