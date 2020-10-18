@@ -15,7 +15,7 @@ ex. 캐릭터가 공격할 때, 공격력이라는 멤버변수에 따라 결과
 Imperative Programming(명령형 프로그래밍): 어떤 과정을 거치는가.  
 Declarative Programming(선언형 프로그래밍): 어떤 결과를 얻는가.  
   
-###. Why Functional Programming is Matter?  
+### Why Functional Programming is Matter?  
 1. Concurrency Programming  
 멀티스레드를 활용한 동시성 프로그래밍을 구현할 때, 기존의 Imperative Programming 환경은 deadlock이 발생할 가능성이 컸다.  
 명령형 프로그래밍 환경에서 deadlock이 발생하는 주요 원인은 스레드 간에 공유되는 데이터나 상태값이 mutable하기 때문이다.  

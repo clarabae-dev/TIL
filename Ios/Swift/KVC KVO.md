@@ -1,10 +1,8 @@
 ## KVC  
-KVC는 속성 접근자를 사용하거나 변수에 직접 접근하는 대신 string을 활용해 간접적으로 객체 속성에 접근할 수 있게 하는 코딩의 한 형태이다.  
+KVC, Key-Value Coding은 프로퍼티명인 문자열을 사용해 프로퍼티에 접근할 수 있게 해준다.  
+프로퍼티 접근자를 사용하거나 변수에 직접 접근하지 않아 객체 간 의존성을 낮추고 결합도가 낮은 개발이 가능하다.  
 이 매커니즘이 가능하기 위해서는 클래스들이 NSKeyValueCoding protocol을 준수해야 한다.  
-  
-프로퍼티에 value를 직접 할당하거나 객체의 setter 메소드를 사용하는 대신, key/keyPaths에 value를 할당하는 단순한 방법을 사용한다.  
-key와 value를 사용하므로 이를 Key Value Coding이라 부른다.  
-  
+    
   
 ### NSKeyValueCoding Protocol  
 모든 클래스들은 KVC & KVO를 사용하기 위해 반드시 NSKeyValueCoding 프로토콜을 준수해야 한다.  
@@ -17,6 +15,13 @@ NSObject는 이 프로토콜을 준수한다. 따라서 Foundation 프레임워�
 dot-syntax 형태로 되어있어서 하나의 단어나 문장이 아니다.  
 Key-path는 원하는 값/프로퍼티에 도달할 때까지 나타나는 객체의 모든 프로퍼티들을 나타낸다.  
   
+### Logic  
+1. key와 일치하는 프로퍼티를 찾는다.  
+2. 일치하는 프로퍼티가 없을 경우, key와 일치하는 인스턴스 변수를 찾는다.  
+3. 일치하는 프로퍼티나 인스턴스 변수가 있으면 이를 적용한다. 없으면 valueForUndefinedKey: 또는 setValue:forUndefinedKey:를 호출한다.  
+  
+런타임에 접근하기 때문에 key가 일치하지 않으면 crash가 발생하기도 한다.  
+  
 ### Dynamic Dispatch  
 Objective-C에서 런타임 때 특정 방법이나 기능의 구현을 호출해야할지 결정하는 것을 가리켜 Dynamic Dispatch 라 부른다.  
 서브클래스가 슈퍼클래스의 메소드를 오버라이드 할 때, dynamic dispatch는 하위 클래스와 상위 클래스의 구현 중 어떤 방법을 실행해야 하는지 파악한다.  
@@ -24,11 +29,9 @@ Objective-C에서 런타임 때 특정 방법이나 기능의 구현을 호출�
 Swift는 가능한한 Swift 런타임을 사용한다.  
 Objective-C는 dynamic dispatch에만 의존하지만, Swift는 다른 선택의 여지가 없는 경우에만 dynamic dispatch를 선택한다.  
 컴파일러가 컴파일 시간에 어떤 방법을 구현해야할지 알아낼 수 있다면 dynamic dispatch를 선택하지 않을 수 있다.  
+Core Data나 KVO 등은 dynamic dispatch를 사용하는 Objective-C 런타임에만 가능하다.  
   
-Swift 런타임은 성능 향상을 위해 가능한한 static, virtual dispatch 같은 다른 옵션들을 선택한다.  
-단, Core Data나 KVO 등은 dynamic dispatch를 사용하는 Objective-C 런타임에만 가능하다.  
-  
-클래스의 멤버에 'dynamic' 키워드를 적용하여 해당 멤버에 액세스하기 위해서는 dynamic dispatch를 사용해야 한다고 컴파일러에게 알려야 한다.  
+클래스의 멤버에 'dynamic' 키워드를 적용하면, 해당 멤버에 액세스하기 위해서는 dynamic dispatch를 사용해야 한다고 컴파일러에게 알릴 수 있다.  
   
 'dynamic' 키워드를 접두사로 붙임으로써 멤버 선언에는 objc 속성이 암시적으로 표시된다.  
 objc 속성은 해당 요소를 Objective-C에서 사용할 수 있게 하며, Objective-C 런타임 때 접근할 수 있다.  
@@ -39,6 +42,10 @@ structure와 enum은 상속을 허용하지 않으므로 어떤 구현을 사용
 따라서 Swift에서 KVC, KVO를 사용하기 위해서는 observe하기 원하는 속성들을 @objc dynamic 키워드와 함께 선언해야 한다.  
   
 ```swift
+@objc class Book: NSObject {
+	@objc dynamic var title = "What"
+}
+
 self.book.setValue("Harry Potter", forKey: "title")
 let bookTitle = self.book.value(forKey: "title") as! String
 ```  
@@ -51,7 +58,7 @@ let bookTitle = self.book.value(forKey: "title") as! String
   
   
 ## KVO  
-KVO는 속성의 변화를 추적하고자 할 때 사용하는 코딩의 한 형태이다.  
+KVO, Key-Value Observing은 속성의 변화를 추적하고자 할 때 사용하는 코딩의 한 형태이다.  
 willSet, didSet 등과 달리 소스를 마음대로 변경할 수 없는 외부 라이브러리 프로퍼티를 관찰할 때 KVO 방식을 쓸 수 있다.  
 즉, 상속이나 코드 변경없이 관찰할 수 있는 방법이다.  
   
