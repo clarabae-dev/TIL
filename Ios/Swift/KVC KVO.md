@@ -42,7 +42,7 @@ structure와 enum은 상속을 허용하지 않으므로 어떤 구현을 사용
 따라서 Swift에서 KVC, KVO를 사용하기 위해서는 observe하기 원하는 속성들을 @objc dynamic 키워드와 함께 선언해야 한다.  
   
 ```swift
-@objc class Book: NSObject {
+class Book: NSObject {
 	@objc dynamic var title = "What"
 }
 
