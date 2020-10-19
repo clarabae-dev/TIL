@@ -52,6 +52,7 @@ Concurrency, 동시성은 작업이 여러 개일 때만 해당한다.
   
 ![Alt text](https://www.swiftdevcenter.com/wp-content/uploads/2019/12/Serial-Concurrent-Queue.jpg)  
   
+  
 ### Synchronous and Asynchronous  
 Synchronous 방식은 작업이 종료된 후 제어권을 넘겨주므로 호출자는 이전 작업이 종료되기를 기다려야 한다.  
 Asynchronous 방식은 즉시 제어권을 넘겨줘서 메인 스레드의 실행을 막지 않는다.  
