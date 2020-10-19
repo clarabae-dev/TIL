@@ -47,8 +47,8 @@ DispatchQueue.global(qos: .userInitiated).async { // Move to background thread(g
 Concurrency, 동시성은 작업이 여러 개일 때만 해당한다.  
   
 ### Serial and Concurrent  
-Serial Dispatch Queue는 한번에 하나의 작업만을 실행하고 그 작업이 종료되어야 새로운 작업을 실행하는 방식이다.  
-Concurrent Dispatch Queue는 한번에 여러 작업을 실행할 수 있다. 작업의 시작 시간은 그들이 추가된 순서가 된고, 종료 순서는 알 수 없다.  
+1. Serial Dispatch Queue: 각 queue는 한번에 하나의 작업만을 실행하고 그 작업이 종료되어야 새로운 작업을 실행한다.  
+2. Concurrent Dispatch Queue: 각 queue는 한번에 여러 작업을 실행할 수 있고, 작업은 그들이 추가된 순서로 계속 시작된다. 종료 순서는 알 수 없다.  
   
 ![Alt text](https://www.swiftdevcenter.com/wp-content/uploads/2019/12/Serial-Concurrent-Queue.jpg)  
   
