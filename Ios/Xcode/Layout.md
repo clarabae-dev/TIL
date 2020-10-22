@@ -16,10 +16,11 @@ arrangedSubView로 하위 뷰들을 관리하며, 하위 뷰들 간 가로/세�
 1. Autolayout Constraint Priority  
 Constraint 간 우선순위이다. Constraint 간 충돌이 발생 할 때, 우선순위를 둠으로써 해결할 수 있다.  
 2. Content Hugging Priority  
-UI Framework의 일부 뷰에는 Contrisic content size, 컨텐츠 고유 사이즈가 있다.  
+UI Framework의 뷰에는 intrinsic content size, 컨텐츠 고유 사이즈가 있다.  
 이 뷰들은 다른 뷰들과의 constraint 때문에 컨텐츠 고유 사이즈보다 더 늘어나거나 줄어들 수 있다.  
-- Content Hugging: 더 늘어나는 것에 대해 저항하는 constraint.  
-- Content Compression Resistance: 더 줄어드는 것에 대해 저항하는 constraint.  
+- Content Hugging: 더 늘어나는 것, 최대 크기에 대한 constraint. intrinsic size보다는 크지만 주어진 크기보다 작아질 수 있다.  
+쉽게 말해, 화면이 작아졌을 때, Content Hugging 값이 더 높은 컴포넌트의 크기가 먼저 줄어든다.  
+- Content Compression Resistance: 더 줄어드는 것, 최소 크기에 대한 constraint. 주어진 크기보다 커질 수 있다.  
   
 컨텐츠 고유 사이즈 constraint는 우선순위가 있는데 Autolayout Constraint Prioriry 보다 우선순위가 낮다.  
   
@@ -38,3 +39,8 @@ func tableView(_ tableView: UITableView, heightForRowAt indexPath: IndexPath) {
 ```  
   
 테이블 뷰 셀은 셀 내부 서브 뷰들 간의 constraint로 셀의 크기가 결정되도록 구현한다.  
+  
+### UILabel  
+1. Dynamic Height  
+- numberOfLines = 0  
+- height >= 0  
