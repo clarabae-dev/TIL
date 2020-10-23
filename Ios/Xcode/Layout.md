@@ -27,6 +27,25 @@ UI Framework의 뷰에는 intrinsic content size, 컨텐츠 고유 사이즈가 
 ### UICollectionViewLayout  
 1. prepare  
 레이아웃과 관련된 연산이 발생할 때마다 가장 먼저 호출된다. 여기서 셀의 위치/크기 등을 계산하는 사전처리를 할 수 있다.  
+2. Set Horizontal CollectionView End Margin  
+Section Insets -> set right value  
+3. Set Cell Center in Horizontal CollectionView  
+셀의 너비가 화면과 딱 맞지 않은 경우, paging enabled = true를 설정해두면 2번째부터 셀의 위치가 애매해진다.  
+paging enabled = false로 설정하고, 아이템 너비와 여백을 포함한 아이템 너비를 계산하여 셀이 위치할 Index 값을 구한다.  
+```swift
+for i in 0..< self.characterCollectionView.numberOfItems(inSection: 0) {  
+  let layout = self.characterCollectionView.collectionViewLayout as! UICollectionViewFlowLayout  
+  let itemWithSpaceWidth = layout.itemSize.width + layout.minimumLineSpacing  
+  let itemWidth = layout.itemSize.width  
+
+  if self.characterCollectionView.contentOffset.x <= CGFloat(i) * itemWithSpaceWidth + itemWidth / 2 {  
+    let indexPath = IndexPath(item: i, section: 0)  
+    self.characterCollectionView.scrollToItem(at: indexPath, at: .centeredHorizontally, animated: true)  
+    break  
+  }  
+}  
+```  
+  
   
 ### UITableView  
 1. Dynamic Height  

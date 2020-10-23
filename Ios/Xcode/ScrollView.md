@@ -31,6 +31,10 @@ ScrollView를 Safe Area를 기준으로 맞춘다.
 2. ContentView를 FrameLayoutGuide에 Align Bottom을 적용한다. 단, Less Than or Equal로 적용한다.  
 이유는 Contents영역은 Frame 영역, 즉 화면에 보여질 영역보다 클 수 있기 때문이다.  
   
+모든 사이즈의 기기에서 스크롤 없이 화면에 맞도록 하려면.
+1. 위의 방법대로 스크롤뷰와 하위 뷰들을 추가한다.  
+2. ContentView를 FrameLayoutGuide에 Align Bottom을 Equal로 적용한다.  
+  
   
   
 출처: https://kyungmosung.github.io/2019/11/06/xcode-scrollview/  
