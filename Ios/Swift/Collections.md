@@ -102,9 +102,71 @@ Swift의 기본 타입들과 Enum은 기본적으로 hashable한 타입들로 Di
 그러나 반대로 hash 값이 같다하여 두 인스턴스가 동일할 필요는 없다.  
   
 **Hash 값은 프로그램 실행에 따라 동일하지 않을 수 있으므로, 다음 실행에서 이전 실행의 Hash 값을 사용해서는 안된다.**  
+  
+### swapAt  
+Swift 4 이후로, Array의 값을 서로 바꿔야 할 때 swap 대신 swapAt을 사용한다.  
+swap이 Law of Exclusivity를 위반하기 때문이다.  
+  
+> Law of Exclusivity: 변수 접근은 독점적으로 이루어져야 한다.  
+  
+즉, 배열이라는 변수에 대해 두 element의 접근이 겹쳐서 swap을 사용할 수 없다. 대신 swapAt(index, index)을 사용한다.  
+swapAt은 배열 범위를 벗어나면 Fatal error가 발생하며 복잡도는 O(1)이다.  
+또한, 동일한 index에 대해 swapAt을 호출할 경우에는 아무런 영향이 없다.  
+  
+### stride  
+감소하는 반복문을 만들 때 주로 활용하는 stride는 다음 두 가지 경우가 있다.  
+1. stride(from: to: by): from 부터 to 사이의 값들을 by 간격으로 리턴한다. 다만 to에 명시한 값은 포함하지 않는다.  
+2. stride(from: through: by:): from 부터 through 사이의 값들을 by 간격으로 리턴한다. through에 명시한 값도 포함한다.  
+  
+```swift
+for i in stride(from: 5, to: 1, by: -1) {
+	print("\(i)") // 5, 4, 3, 2
+}
 
+for i in stride(from: 5, through: 1, by -1) {
+	print("\(i)") // 5, 4, 3, 2, 1
+}
+```  
+  
+### reverse() vs reversed()  
+1. reverse()  
+  
+```swift
+mutating func reverse()
+```  
+
+공식 문서에 따르면 collection을 역순으로 바꿔주며. 그 공간 내에서 수행하기 때문에 새로운 공간을 할당할 필요가 없다.  
+  
+```swift
+var characters: [Character] = ["C", "a", "f", "é"]
+characters.reverse()
+print(characters) // "["é", "f", "a", "C"]
+```  
+  
+복잡도는 O(n)이며, n은 collection의 크기이다.  
+
+2. reversed()  
+  
+```swift
+func reversed() -> ReversedCollection<Array<Element>>
+```  
+  
+공식 문서에 따르면 collection element를 역순으로 나타내는 뷰를 반환한다.  
+역순으로 바뀐 collection을 반환하는 것이 아니며, 새로운 공간을 할당하지 않는다.  
+ReversedCollection은 기존 collection을 감싸 각 element에 역순으로 접근할 수 있도록 해준다.  
+  
+```swift
+let reversedWord = String(word.reversed())
+print(reversedWord) // "sdrawkcaB"
+```  
+
+  
   
   
 출처:  
 https://github.com/yagom/swift_basic/tree/master/contents/03_collection_types  
 https://programmingwithswift.com/how-to-sort-a-dictionary-by-value-with-swift/  
+https://zeddios.tistory.com/354  
+https://zeddios.tistory.com/73  
+https://developer.apple.com/documentation/swift/array/2943836-reverse  
+https://developer.apple.com/documentation/swift/array/1690025-reversed  

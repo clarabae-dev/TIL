@@ -13,18 +13,18 @@ DP는 계산횟수를 줄일 수 있기 때문에 하위 문제 수가 기하급
   
 ``` swift
 func fib(_ n: Int) -> Int {// 일반 재귀 피보나치 함수  
-&nbsp;&nbsp;guard n > 1 else { return n }  
-&nbsp;&nbsp;if n == 2 { return 1 }  
-&nbsp;&nbsp;return fib(n - 1) + fib(n - 2)  
+	guard n > 1 else { return n }  
+	if n == 2 { return 1 }  
+	return fib(n - 1) + fib(n - 2)  
 }  
   
 func dpfib(_ n: Int) -> Int {// Memoization 피보나치 함수  
-&nbsp;&nbsp;guard n > 1 else { return n }  
-&nbsp;&nbsp;var fibs: [Int] = [0, 1]  
-&nbsp;&nbsp;(2...n).forEach { i in  
-&nbsp;&nbsp;&nbsp;&nbsp;fibs.append(fibs[i - 1] + fibs[i - 2]) // Memoization  
-&nbsp;&nbsp;}  
-&nbsp;&nbsp;return fibs.last!  
+	guard n > 1 else { return n }  
+	var fibs: [Int] = [0, 1]  
+	(2...n).forEach { i in  
+		fibs.append(fibs[i - 1] + fibs[i - 2]) // Memoization  
+	}  
+	return fibs.last!  
 }   
 ```
   
