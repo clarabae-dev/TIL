@@ -38,7 +38,7 @@ var integers = [Int]()
 - count: 아이템 수 확인.  
   
 ### Dictionary  
-- key, value 쌍으로 이루어진 collection type.  
+- 순서 상관없이 key, value 쌍으로 이루어진 collection type.  
   
 ```swift
 var anyDictionary: Dictionary<String, Any> = [String: Any]()

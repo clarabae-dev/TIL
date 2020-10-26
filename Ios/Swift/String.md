@@ -23,3 +23,9 @@ ex. str.index(str.startIndex, offsetBy: 3)
 
 #### Value Type  
 Swift에서 String type은 참조형태가 아닌 값 형태이다.  
+  
+#### utf16Offset(in:)  
+String.Index를 통해 String element에 접근할 수 있는데, 반환값이 Int가 아닌 Index이다.  
+Index 값에 직접 접근하고자 할 때, 다음과 같이 수행할 수 있다.  
+1. Swift 5 이전: firstIndex(of: char)?.encodedOffset  
+2. Swift 5 이후: firstIndex(of: char)?.utf16Offset(in: s)  
