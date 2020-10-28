@@ -4,7 +4,7 @@
 ### 서버 환경에 따라 Build Config 설정하기  
 1. xcconfig files  
 텍스트 형식으로 작성된 build configuration 파일이다.  
-프로젝트나 타겟의 특정 build configuration을 위한 build setting을 정의할 수 있다.   
+프로젝트나 타겟의 특정 build configuration을 위한 build setting을 정의할 수 있다.  
   
 2. Default Configuration Settings  
 Product -> Scheme -> Edit Scheme...   
