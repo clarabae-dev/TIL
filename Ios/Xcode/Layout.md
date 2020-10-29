@@ -1,6 +1,12 @@
-### AutoLayout  
+## AutoLayout  
 다양한 사이즈와 화면 비율에 구애받지 않고 시각적으로 동일한 화면을 구현하기 위한 방법이다.  
 뷰의 constraint를 기반으로 모든 뷰의 크기와 위치를 동적으로 계산한다.  
+  
+  
+### SanpKit  
+ios 및 os x에서 autolayout을 쉽게 코드로 적용하기 위한 DSL이다.  
+
+> DSL: Domain Specific Language, 도메인에 특화된 언어로 특정한 도메인을 적용하는데 특화된 언어를 뜻한다.  
 
 ### Frame and Bounds  
 1. Frame  
