@@ -1,7 +1,11 @@
-#### 접근제어  
+## Access Control  
 다른 소스 파일이나 모듈에서 특정 코드에 대한 접근을 명시적으로 작성하여 관리하는 것  
 
-#### private extension  
+  
+### open  
+1. 가장 제한이 적은 접근이며, 클래스 및 클래스 멤버에만 적용된다.  
+  
+### private extension  
 동일한 파일에 있는 extension하려는 같은 대상에 대해서만 접근이 가능하다.  
 Ex. 아래 두개의 extension은 모두 EndPoint.swift 파일에 있다.  
 

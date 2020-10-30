@@ -5,6 +5,3 @@ from a background thread after it has been accessed from the main thread.
 
 2. TableView Cell Reuse Problem  
 Cell 내부에 prepareForReuse()를 오버라이드한 후, Cell을 초기화해준다.  
-
-3. Multiple commands produce '.../info.plist'  
-File -> Workspace Settings -> Build System -> Legacy Build System  
