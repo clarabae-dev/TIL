@@ -1,4 +1,4 @@
-## Xcode Build Error  
+## Error  
   
   
 ### Multiple commands produce '.../info.plist'  
