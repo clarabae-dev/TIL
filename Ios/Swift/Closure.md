@@ -52,3 +52,58 @@ closrue는 클래스와 같은 참조 타입이다.
 메모리 관리의 용이성을 위해 클로저는 변수에 할당하기 보다 직접 호출하여 사용한다.  
 단, 변수에 할당할 경우, self 키워드를 명시적으로 사용해야 한다.  
 함수가 return된 뒤에도 탈출한 클로저가 어떤 객체를 참조하고 있는지 기억하기 위해서이다.  
+  
+#### Implicit capturing of self in Swift 5.3  
+Swift 5.3 이전 버전에서는 escaping closure 내부에서 인스턴스 메소드나 프로퍼티에 접근할 때 명시적으로 self를 사용해야 했다.  
+  
+```swift
+struct ListView: View {
+    @ObservedObject var viewModel: ListViewModel
+
+    var body: some View {
+        List {
+            ForEach(viewModel.items) { item in
+                Text(item.text)
+            }
+            .onDelete {
+                self.viewModel.deleteItems(at: $0)
+            }
+
+            Button("Delete all items") {
+                self.viewModel.deleteAllItems()
+            }
+            .foregroundColor(.red)
+        }
+    }
+}
+```  
+  
+Swift 5.3에서는 그러나 위와 같이 강한 참조가 형성되지 않을 경우에는 self가 필요없어졌다.  
+SwiftUI view는 가벼운 struct이므로 subview들에 대해 강한 참조를 형성하지 않는다.  
+  
+```swift
+struct ListView: View {
+    @ObservedObject var viewModel: ListViewModel
+
+    var body: some View {
+        List {
+            ForEach(viewModel.items) { item in
+                Text(item.text)
+            }
+            .onDelete {
+                viewModel.deleteItems(at: $0)
+            }
+
+            Button("Delete all items") {
+                viewModel.deleteAllItems()
+            }
+            .foregroundColor(.red)
+        }
+    }
+}
+```  
+  
+  
+  
+  
+참조: https://www.swiftbysundell.com/tips/implicit-capturing-of-self/  

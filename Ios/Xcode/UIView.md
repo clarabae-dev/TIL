@@ -15,6 +15,14 @@ Display P3는 애플이 DCI-P3를 디스플레이 환경에 맞춰 수정하여 
   
 > color space: 색 표시계를 3차원으로 표현한 공간 개념.  
   
+2. 컬러 프로필에 따라 rgb값 변경하기.  
+storyboard -> color custom -> 톱니바퀴 -> 컬러 프로필 선택  
+sRGB와 displayP3 등 Generic RGB와는 다른 rgb 값이 나온다.  
+  
+### UIButton  
+UIButton을 extension하여 backgroundColor를 변경하려고 시도하면 잘 동작하지 않는다.  
+실제 UIButton 컴포넌트 문서를 보아도 backgroundColor에 대한 설명은 없다. 대신 backgroundImage를 설정하도록 한다.  
+  
   
   
 참조: https://namu.wiki/w/%EC%83%89%20%EC%98%81%EC%97%AD  
