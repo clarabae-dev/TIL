@@ -32,12 +32,6 @@ hello() // 안녕하세요
 함수형 프로그래밍은 대입문이 없으므로 메모리를 참조하는 것이 아니라 호출, callback 한다.  
 closure는 주로 비동기 callback 함수로 쓰인다.  
   
-### Capture Value  
-closrue는 클래스와 같은 참조 타입이다.  
-만약 클로저를 변수로 선언하거나 파라미터로 넘긴다면 클로저는 힙 안에 들어갈 것이고, 강한 참조가 생기게 된다.  
-클로저 내부에서 self에 접근하게 되면 클로저와 self 사이의 강한 순환 참조가 발생한다.  
-이 경우, [unowned self] 또는 [weak self]를 사용해 순환 참조의 고리를 끊을 수 있다.  
-  
 ### noescape closure  
 함수 파라미터로 closure가 전달될 때, 이 closure는 noescape가 기본이다.  
 함수 종료 전에 closure는 사용되고, 함수 종료 후 closure는 필요없기 때문에 메모리에서 사라지게 된다.  
@@ -106,4 +100,51 @@ struct ListView: View {
   
   
   
-참조: https://www.swiftbysundell.com/tips/implicit-capturing-of-self/  
+## Capture Value  
+Closure Capture란, closure가 매개변수나 지역변수가 아닌 주변 외부의 context를 참조하는 것을 뜻한다.  
+capture를 해두어야 외부 context가 없어져도 closure가 해당 context를 사용할 수 있다.  
+  
+  
+### Explicit Capture  
+  
+```swift
+viewModel.includeStudio.asDriver()
+            .drive {
+                if $0 {
+                    self.studioButton.setIncludedButton()
+                    self.viewModel.removeRoomFilter(type: RoomType.studio)
+                } else {
+                    self.studioButton.setExcludedButton()
+                    self.viewModel.appendRoomFilter(type: RoomType.studio)
+                }
+                self?.viewModel.fetchRooms()
+            }.disposed(by: disposeBag)
+```  
+  
+위 예시에서 외부의 UI 컴포넌트들을 참조하기 위해 VC의 self를 참조하였다.  
+참조한 순간, closure는 인스턴스를 capture하고 실제 closure가 메모리에서 해제되기 전까지 참조한 인스턴스를 메모리에서 해제하지 않는다.  
+  
+### Capture Lists  
+앞 예시의 경우 클로저와 self 사이에 상호간 강한 참조가 형성되어 강한 순환 참조가 발생할 수 있다.  
+이를 방지하기 위해 capture list를 활용하여 약한 참조로 변경할 수 있다.  
+  
+```swift
+viewModel.includeStudio.asDriver()
+            .drive { [weak self] in
+                if $0 {
+                    self?.studioButton.setIncludedButton()
+                    self?.viewModel.removeRoomFilter(type: RoomType.studio)
+                } else {
+                    self?.studioButton.setExcludedButton()
+                    self?.viewModel.appendRoomFilter(type: RoomType.studio)
+                }
+                self?.viewModel.fetchRooms()
+            }.disposed(by: disposeBag)
+```  
+  
+  
+  
+  
+참조:  
+https://www.swiftbysundell.com/tips/implicit-capturing-of-self/  
+https://www.swiftbysundell.com/articles/swifts-closure-capturing-mechanics/  

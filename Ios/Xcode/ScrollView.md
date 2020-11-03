@@ -35,6 +35,11 @@ ScrollView를 Safe Area를 기준으로 맞춘다.
 1. 위의 방법대로 스크롤뷰와 하위 뷰들을 추가한다.  
 2. ContentView를 FrameLayoutGuide에 Align Bottom을 Equal로 적용한다.  
   
+### 속성  
+  
+#### contentOffset  
+Bounds의 origin point(x, y)로 scrollview에서 스크롤을 하면 contentOffset이 변경된다.  
+  
   
   
 출처: https://kyungmosung.github.io/2019/11/06/xcode-scrollview/  

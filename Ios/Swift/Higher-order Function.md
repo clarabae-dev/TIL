@@ -84,6 +84,15 @@ let count = names.compactMap { $0?.count }
 ```  
   
   
+### Map vs FlatMap  
+방 정보를 담고 있는 Room이 있고, Room마다 옵션을 설명하는 HashTag 배열이 있다.  
+  
+```swift
+let hashTags1 = rooms.map { $0.hashTags } // [["발코니", "엘리베이터"], ["빌트인"]], hashtag 배열들을 감싼 하나의 배열 형태
+let hashTags2 = rooms.flatMap { $0.hashTags } // ["발코니", "엘리베이터", "빌트인"], hashtag 배열을 풀어헤친 하나의 배열 형태, 위의 2차 배열을 1차 배열로 변환.
+```  
+  
+  
   
   
 출처: https://zeddios.tistory.com/448  
