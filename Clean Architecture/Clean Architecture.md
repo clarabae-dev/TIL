@@ -28,7 +28,7 @@ Presentation Layer는 UseCase를 통해 데이터를 요청하고 응답을 받�
 *Use Case: 1개 이상의 Repository를 받아 비즈니스 로직을 처리하는 부분이다.  
 1. 하나의 유저 행동에 대한 비즈니스 로직을 가지고 있다. 1개의 유저 행동에 따른 1개의 로직만을 반환한다.  
 2. Presentation Layer와 Data Layer를 연결해주는 매개체이다.  
-3. ViewModel의 요청을 파라미터로 넘겨받고, 데이터 호출을 한 뒤, 결과값을 뷰모델에 반환해준다.*  
+3. ViewModel의 요청을 파라미터로 넘겨받고, 데이터 호출을 한 뒤, 결과값을 뷰모델에 반환해준다.  
 
 ### Presentation Layer  
 Presenters(ViewModels) + UI(UIViewControllers or SwiftUI Views)  

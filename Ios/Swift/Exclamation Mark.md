@@ -1,9 +1,9 @@
 ## !  
-swiftsms 느낌표를 사용하여 optional을 강제로 unwrap하거나 명시적으로 unwrapped optional을 표현한다.  
+swift는 !를 사용하여 optional을 강제로 unwrap하거나 명시적으로 unwrapped optional을 표현한다.  
   
   
 ### Mean  
-1. 강제로 optional을 unwrap 한다.  
+1. 강제로 optional을 unwrap 하다.  
 *이 optional이 확실히 값을 가지고 있다는 것을 알고 있으니, 직접 사용하겠다.*  
 2. 명시적으로 unwrapped optional을 표현하다.  
   
@@ -19,6 +19,7 @@ try는 do-catch 문을을 사용해 에러 처리를 한다. do 문 내에서 tr
   
 #### try?  
 에러 발생 시 nil을 반환한다. 에러가 발생하지 않으면 리턴된 타입은 optional이다. 리턴 타입이 없어도 사용할 수 있다.  
+  
 ```swift
 if let results = try? viewModel.rooms.value() {
     return results
