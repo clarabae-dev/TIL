@@ -193,14 +193,15 @@ Observable.zip(userRequest, friendRequest) { user, friends in
 ### State  
 mutation, 변화를 허락하는 언어는 전역 상태에 접근하기 쉽고 변경할 수 있게 해준다. 
 공유되는 전역 상태 변경을 제어하지 않으면 Combinatorial explosion을 일으킬 수 있다.  
-> < 위키백과 >
-> Combinatorial explosion 
+> < 위키백과 >  
+> Combinatorial explosion  
 > 수학에서 조합 폭박은 문제의 조합이 문제의 입력, 제약 및 경계에 의해 어떻게 영향을 받는지에 따라 문제의 복잡성이 급격히 증가하는 것을 뜻한다.
 
 *전역 상태를 마구잡이로 변경하면 복잡성이 매우 증가할 수 있다는 뜻인 듯 하다.*  
   
 그러나 반면, 명령어를 똑똑하게 사용할 경우, 더 효율적인 코드를 작성할 수 있다.  
 Combinatorial explosion에 대항하는 방법은 상태를 가능한한 최대한 간단하게 유지하고, 단방향 데이터 흐름에 따라 파생된 데이터를 모델링하는 것이다.  
+  
 *RX를 사용하면, 상태의 영향을 적게 받도록하여 복잡성을 낮출 수 있다는 뜻인 것 같다.*  
   
 ### Benefits  
