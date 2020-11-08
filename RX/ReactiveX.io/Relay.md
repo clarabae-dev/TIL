@@ -1,3 +1,5 @@
+> ReactiveX.io의 해당 내용을 번역 및 추가한 내용입니다.
+  
 ## Relay  
 RxCocoa 클래스로 RxCocoa 4에서 구현되었다.  
   

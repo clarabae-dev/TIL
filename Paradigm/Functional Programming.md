@@ -12,8 +12,12 @@ ex. 캐릭터가 공격할 때, 공격력이라는 멤버변수에 따라 결과
 *OOP와 FP의 차이는 State의 유무이다.*  
 *순수함수: 어떤 값을 언제 어느 상황에 어떻게 넣더라도 동일한 결과가 나오는 함수*  
 3. 선언적으로 프로그래밍 한다.  
-Imperative Programming(명령형 프로그래밍): 어떤 과정을 거치는가.  
-Declarative Programming(선언형 프로그래밍): 어떤 결과를 얻는가.  
+Imperative Programming(명령형 프로그래밍): 어떤 과정을 거치는가. 어떻게 할 것인가.  
+
+> 도서관에서 우리 집으로 가는 방법은 먼저 단지 앞에서 횡단보도를 건너 왼쪽으로 갑니다. 놀이터가 나올 때까지 계속 걷다가 놀이터 앞에서 왼쪽으로 갑니다.  
+
+Declarative Programming(선언형 프로그래밍): 어떤 결과를 얻는가. 무엇을 할 것인가. 목표가 무엇인가.  
+> 우리 집 주소는 ~ 입니다.  
   
 ### Why Functional Programming is Matter?  
 1. Concurrency Programming  

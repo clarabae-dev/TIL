@@ -1,3 +1,5 @@
+> ReactiveX.io의 해당 내용을 번역 및 추가한 내용입니다.
+  
 ## Observable  
 Observable은 대상을 관찰할 수 있는 형태로 바꾸어준다.  
 ReactiveX에서 observer는 Observable을 subscribe 할 수 있다.  

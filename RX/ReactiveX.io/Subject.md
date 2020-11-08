@@ -1,3 +1,5 @@
+> ReactiveX.io의 해당 내용을 번역 및 추가한 내용입니다.
+  
 ## Subject  
 Subject는 observable을 subscribe 할 수 있는 observer이면서 동시에 observable이어서 stream으로 동작하며 항목을 배출할 수 있다.  
 단일 Subject는 단일 Observable을 subscribe 하는데, 이 때 Observable이 항목들을 배출시키도록 동작한다.  

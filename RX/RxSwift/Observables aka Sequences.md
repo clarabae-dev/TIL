@@ -1,3 +1,5 @@
+> RxSwift github의 해당 내용을 번역한 내용입니다.
+  
 ## Basics  
 **Observer 패턴의 Observable과 Swift의 Sequence는 둘 다 비동기적으로 element를 받을 수 있으며, 이 점이 RxSwift의 핵심이다.**  
   
@@ -51,3 +53,7 @@ RxSwift에서는 sequence가 유한한 시간에 종료되더라도 disposeBag�
   
   
 ## Disposing  
+  
+  
+  
+참조: https://github.com/ReactiveX/RxSwift/blob/main/Documentation/GettingStarted.md#observables-aka-sequences  
