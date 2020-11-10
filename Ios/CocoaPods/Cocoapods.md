@@ -34,6 +34,20 @@ So even if you are just adding/removing pods to a project already using CocoaPod
 ### Clear CocoaPods Cache  
 pod deintegrate && pod cache clean --all  
   
+### Cocoapod Version Update  
+1. the latest stable version  
+  
+```
+sudo gem install cocoapods
+```  
+  
+2. the latest pre release version  
+  
+```
+sudo gem install cocoapods --pre
+```  
+  
+  
   
   
 출처: https://www.raywenderlich.com/626-cocoapods-tutorial-for-swift-getting-started  
