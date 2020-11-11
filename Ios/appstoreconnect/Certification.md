@@ -7,3 +7,8 @@
   
 ### How to Renewal Distribution Certificate  
 Apple Developer -> Certificates, Identifiers & Profiles -> 만기일에 가까워진 인증서 확인  
+  
+  
+  
+## APNs Certificate  
+Apple Push Notification Service, 푸시 알림 기능이다.  
