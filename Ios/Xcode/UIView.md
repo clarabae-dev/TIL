@@ -19,6 +19,10 @@ Display P3는 애플이 DCI-P3를 디스플레이 환경에 맞춰 수정하여 
 storyboard -> color custom -> 톱니바퀴 -> 컬러 프로필 선택  
 sRGB와 displayP3 등 Generic RGB와는 다른 rgb 값이 나온다.  
   
+3. 코드로 적용한 컬러가 다르게 나올 경우.  
+2번의 방법대로 먼저 제플린 컬러를 Generic RGB 값으로 뽑는다.  
+다시 설정에서 displayP3로 옵션을 변경하면, 옵션에 해당하는 컬러값이 새로 나온다. 이를 코드에 적용한다.  
+  
 ### UIButton  
 UIButton을 extension하여 backgroundColor를 변경하려고 시도하면 잘 동작하지 않는다.  
 실제 UIButton 컴포넌트 문서를 보아도 backgroundColor에 대한 설명은 없다. 대신 backgroundImage를 설정하도록 한다.  
