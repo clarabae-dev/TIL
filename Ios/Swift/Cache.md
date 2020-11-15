@@ -11,8 +11,56 @@ URLSession과 URLRequest는 기본적으로 useProtocolCachePolicy라는 캐시 
 즉, URLSession과 URLRequest로 요청할 때, HTTP 캐싱 헤더를 완성한다는 것이다.  
 위와 같은 경우에 헤더에 지정된 시간만큼 요청에 대한 응답을 캐싱할 것이다. 다른 옵션들을 사용하고자 한다면, 이를 override 할 수도 있다.  
   
-.. 작성 중 
+### Caching in URLSession  
   
+```swift
+let url = URL(string: "https://postman-echo.com/response-headers?Content-Type=text/html&Cache-Control=max-age=30")!
+let request = URLRequest(url: url)
+
+let task = URLSession.shared.dataTask(with: url) { (data, response, error) in
+	if let httpResponse = response as? HTTPURLResponse,
+		let date = httpResponse.value(forHTTPHeaderField: "Date"),
+		let cacheControl = httpResponse.value(forHTTPHeaderField: "Cache-Control") {
+			print("Request1 date: \(date)")
+			print("Request1 Cache Header: \(cacheControl)")
+		}
+}  
+task.resume()
+
+sleep(5)
+
+let task2 = URLSession.shared.dataTask(with: url) { (data, response, error) in
+	if let httpResponse = response as? HTTPURLResponse,
+		let date = httpResponse.value(forHTTPHeaderField: "Date"),
+		let cacheControl = httpResponse.value(forHTTPHeaderField: "Cache-Control") {
+			print("Request2 date: \(date)")
+			print("Request2 Cache Header: \(cacheControl)")
+		}
+}  
+task2.resume()
+```  
+  
+task1과 task2의 수행 결과는 다음과 같다.  
+
+```git
+Request1 date: Tue, 23 Jun 2020 09:21:36 GMT
+Request1 Cache Header: max-age=30
+Request2 date: Tue, 23 Jun 2020 09:21:36 GMT
+Request2 Cache Header: max-age=30
+```  
+  
+캐싱 유지 시간 내에 재요청했으므로 동일한 응답값을 받음을 확인할 수 있다.  
+만약 Cache-Control=max-age=3으로 바꾸어 요청할 경우, 결과는 다음과 같을 것이다.  
+  
+```git
+Request1 date: Tue, 23 Jun 2020 11:34:58 GMT
+Request1 Cache Header: max-age=3
+Request2 date: Tue, 23 Jun 2020 11:35:03 GMT
+Request2 Cache Header: max-age=3
+```  
+  
+캐싱 유지 시간을 지나 재요청을 하기 때문에 새로운 응답값을 받음을 확인할 수 있다.  
+
   
   
 참조: https://medium.com/dev-genius/simple-offline-caching-in-swift-and-combine-e940427ad6e4  
