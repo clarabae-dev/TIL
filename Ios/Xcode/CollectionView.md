@@ -24,4 +24,10 @@ collectionview cell을 원하는 형태로 정렬할 수 있도록 해주는 프
   
   
   
+### Set Constraint Programmatically  
+collectionview cell의 subview의 constraint를 조정하려 하나 적용이 안되는 경우가 있다.  
+해당 subview에 가로 세로 ratio를 적용한 경우이다.  
+  
+  
+  
 참조: https://k-elon.tistory.com/26  
