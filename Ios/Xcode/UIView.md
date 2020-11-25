@@ -27,6 +27,21 @@ sRGB와 displayP3 등 Generic RGB와는 다른 rgb 값이 나온다.
 UIButton을 extension하여 backgroundColor를 변경하려고 시도하면 잘 동작하지 않는다.  
 실제 UIButton 컴포넌트 문서를 보아도 backgroundColor에 대한 설명은 없다. 대신 backgroundImage를 설정하도록 한다.  
   
+### UIImageView  
+UIImageView에서 적용할 수 있는 사이즈와 비율 옵션은 다음과 같다.  
+1. Scale To Fill  
+이미지 원본의 비율을 무시하고 전체 이미지가 UIImageView에 들어가도록 한다. 전체 이미지가 보여지지만 비율 왜곡이 발생할 수 있다.  
+2. Aspect Fit  
+이미지 원본의 비율을 유지하면서 이미지를 모두 표시한다. 따라서 이미지가 매우 작게 나올 수도 있다.  
+3. Aspect Fill  
+이미지 원본의 비율을 유지하면서 UIImageView에 가득 차보이도록 한다. 비율이 유지되기 때문에 부분적으로 이미지가 짤릴 수 있다.  
+이미지가 UIImageView 영역을 벗어날 수 있는데 UIImageView에 ClipToBounds 항목을 체크해주거나 다음의 코드를 작성한다.  
+  
+```swift
+imageView.layer.masksToBounds = true
+```  
+  
+  
   
   
 참조: https://namu.wiki/w/%EC%83%89%20%EC%98%81%EC%97%AD  
