@@ -25,3 +25,30 @@ if (url != nil) {
 }
 ```  
   
+4. Guideline 2.1 - Information Needed  
+1. A demo video demonstrating your app's process for registering and verifying new users.  
+Please provide details for accessing the video in the "App Review Information" section of App Store Connect.  
+Only include footage in the video of your app running on a physical iOS device, and not on a simulator.  
+You can use a screen recorder to capture footage of your app in use.  
+  
+- 본인 인증 절차가 포함되어 있기 때문에 회원가입 절차를 전부 거칠 수 없어 요청이 들어온 것 같다.  
+
+2. Detailed answers to the following questions:  
+- Why does your app require user verification for registration?  
+회원가입에서 본인 인증이 필요한 이유.  
+
+- What personal information does the app collect in the user-verification process?  
+본인 인증 절차에서 수집하는 개인 정보 항목.  
+  
+- What personal information is required for registration?  
+Please list each type of personal information separately with reasons for why it is required.  
+회원가입 과정에서 수집하는 개인 정보 항목과 그 이유.  
+  
+5. Guideline 1.4.1 - Safety - Physical Harm  
+All apps with medical and health information should include links to sources for the information.  
+This helps ensure that App Store users are being provided accurate information.  
+  
+Please include citations in the app of the sources of the recommendations or information and links to those sources.  
+The links to the sources should be easy for the user to find.  
+  
+- 건강 또는 의학 관련 내용은 사용자에게 정확한 정보 전달을 위해 그 출처를 명시해야 한다.  
