@@ -1,3 +1,20 @@
+### How to print function/line number  
+  
+```swift
+func logMessage(_ message: String,
+                  fileName: String = #file,
+                  functionName: String = #function,
+                  lineNumber: Int = #line,
+                  columnNumber: Int = #column) {
+    print("🤡🤡🤡 Called by \(fileName) - \(functionName) at line \(lineNumber)[\(columnNumber)]")
+}
+
+print(#function)
+```  
+  
+  
+  
+  
 ## os_log  
 ios 14.0 부터 사용 가능한 Unified Logging System, 통합 로깅 시스템으로 모든 레벨의 시스템에서 메시징을 캡쳐할 수 있게 해준다.  
 로그 데이터를 메모리와 디스크의 데이터 저장소에서 모아 메시지를 한데 보여준다.  
