@@ -69,3 +69,7 @@ func tableView(_ tableView: UITableView, heightForRowAt indexPath: IndexPath) {
 1. Dynamic Height  
 - numberOfLines = 0  
 - height >= 0  
+  
+다만, 이렇게 하여도 온전히 텍스트를 전부 보여주지 못할 때가 있다.  
+- Line Break = Truncate Head  
+- Autoshrink = Minimum Font Scale  
