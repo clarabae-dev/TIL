@@ -31,7 +31,7 @@ if (url != nil) {
 ```  
   
 4. Guideline 2.1 - Information Needed  
-- A demo video demonstrating your app's process for registering and verifying new users.  
+4.1 A demo video demonstrating your app's process for registering and verifying new users.  
 Please provide details for accessing the video in the "App Review Information" section of App Store Connect.  
 Only include footage in the video of your app running on a physical iOS device, and not on a simulator.  
 You can use a screen recorder to capture footage of your app in use.  
@@ -50,6 +50,11 @@ You can use a screen recorder to capture footage of your app in use.
 Please list each type of personal information separately with reasons for why it is required.  
 
 > 회원가입 과정에서 수집하는 개인 정보 항목과 그 이유.  
+  
+  
+4.2 App Tracking Transparency Permission  
+분명 권한 허가를 요청하는데 본인이 안된다고 한다. 그래서 스크린샷과 영상을 첨부해서 이의신청을 했고, 바이너리도 새로 제출하였다.
+  
   
 5. Guideline 1.4.1 - Safety - Physical Harm  
 All apps with medical and health information should include links to sources for the information.  
