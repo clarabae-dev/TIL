@@ -47,3 +47,10 @@ UIApplication 객체는 앱이 실행될 때 Main Run Loop를 실행하고, Run 
 ViewWillAppear 호출되는 경우:  
 ViewController에 뷰가 view hierarchy에 추가될 것임을 알려줄 때 호출된다.  
 이미 view hierarchy에 추가된 경우, ViewWillAppear가 호출되지 않는다.  
+
+### How to detect app returned to foreground  
+```swift
+let notificationCenter = NotificationCenter.default
+notificationCenter.addObserver(self, selector: #selector(appMoveToForeground), name: Notification.Name.UIApplicationWillEnterForeground, object: nil)
+```  
+  
